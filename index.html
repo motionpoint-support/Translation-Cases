@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Translation Cases</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&amp;family=Lexend:wght@400;500;600;700&amp;family=Lato:wght@400;700;900&amp;display=swap">
+<style>
+body{margin:0;font-family:'Lato',system-ui,sans-serif;background:#0E1B2E;color:#0B2545}
+a{color:#1466F0}a:hover{color:#0B4FC0}
+.stage *{box-sizing:border-box}
+.mono{font-family:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace}
+.disp{font-family:'Lexend','Lato',sans-serif}
+.paused,.paused *{animation-play-state:paused !important}
+.sh{position:absolute;left:40px;top:-4px}
+.h2{font-family:'Lexend','Lato',sans-serif;font-size:30px;font-weight:700;color:#0B2545}
+.h2s{font-size:18px;color:#3B4F6B}
+.sc{position:absolute;top:66px;height:86px;border-radius:16px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.sr{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.sn{font-family:'Lexend','Lato',sans-serif;width:30px;height:30px;border-radius:15px;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0}
+.st{font-size:16px;font-weight:900;color:#0B2545;line-height:1.2}
+.tg{display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:11px;color:#FFFFFF;font-size:11px;font-weight:900;letter-spacing:.03em;white-space:nowrap}
+.mk{position:absolute;right:-9px;bottom:-11px}
+.panel{position:absolute;left:40px;top:170px;width:1200px;height:460px;border-radius:22px;background:#FFFFFF;box-shadow:0 14px 36px rgba(11,37,69,.10);overflow:hidden}
+.win{position:absolute;left:0;top:0;width:1200px;height:460px;background:#FFFFFF}
+.ill{position:absolute;left:26px;top:26px;width:470px;height:408px;border-radius:18px;overflow:hidden}
+.tc{position:absolute;left:530px;top:30px;width:640px;display:flex;flex-direction:column;gap:12px}
+.eb{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.tt{font-family:'Lexend','Lato',sans-serif;font-size:28px;font-weight:700;color:#0B2545;line-height:1.2;margin-bottom:2px}
+.bl{display:flex;gap:12px;align-items:flex-start}
+.bn{width:26px;height:26px;border-radius:13px;font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.bt{font-size:19px;line-height:1.4;color:#0B2545;font-weight:700}
+.lp{align-self:flex-start;margin-top:10px;height:46px;padding:0 20px 0 10px;border-radius:23px;display:inline-flex;align-items:center;gap:10px;font-size:17px;font-weight:900}
+.ex{margin-top:6px;border-radius:14px;background:#FFF7F0;border:2px dashed #C2410C;padding:12px 16px;display:flex;flex-direction:column;gap:6px}
+.exh{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#9A3412}
+.ext{font-size:17px;line-height:1.45;font-weight:700;color:#0B2545}
+.wc{position:absolute;background:#FFFFFF;border-radius:14px;box-shadow:0 10px 24px rgba(11,37,69,.14);overflow:hidden}
+.bar{height:30px;background:#E9EEF5;display:flex;align-items:center;gap:5px;padding:0 10px}
+.dot{width:8px;height:8px;border-radius:4px}
+.url{margin-left:6px;flex-grow:1;height:18px;border-radius:9px;background:#FFFFFF;font-size:11px;color:#3B4F6B;padding:0 8px;line-height:18px;white-space:nowrap;overflow:hidden}
+.ln{height:8px;border-radius:4px;background:#E3E9F2}
+.lab{font-size:12px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#5A6B84}
+.fld{height:32px;border-radius:8px;border:2px solid #C9D3E1;display:flex;align-items:center;padding:0 10px;font-size:13px;color:#0B2545}
+.av{position:absolute}
+@keyframes panX{0%,15%{transform:translateX(0)}85%,100%{transform:translateX(-1264px)}}
+.shot{position:absolute;left:26px;top:26px;width:700px;height:408px;border-radius:14px;background:#EEF2F8;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.tc2{position:absolute;left:752px;top:30px;width:424px;display:flex;flex-direction:column;gap:12px}
+.call{margin-top:6px;border-radius:14px;background:#1466F0;color:#FFFFFF;padding:14px 18px;display:flex;flex-direction:column;gap:4px}
+.rz{display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:16px;background:#FFF7F0;border:2px solid #C2410C;color:#7C2D12;font-size:14px;font-weight:900;white-space:nowrap}
+.ch{height:40px;padding:0 16px;border-radius:20px;background:#FFFFFF;display:inline-flex;align-items:center;font-size:15px;font-weight:900}
+.row{height:44px;border-radius:12px;background:#FFFFFF;display:flex;align-items:center;gap:10px;padding:0 14px;font-size:16px;font-weight:700;color:#0B2545;box-shadow:0 4px 10px rgba(11,37,69,.06)}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeOut{from{opacity:1}to{opacity:0}}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes fromL{from{opacity:0;transform:translateX(-36px)}to{opacity:1;transform:none}}
+@keyframes fromR{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.6)}70%{opacity:1;transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
+@keyframes zoomIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes win{0%{opacity:0;transform:translateY(14px)}9%{opacity:1;transform:none}90%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-10px)}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(20,102,240,.45),0 18px 40px rgba(11,37,69,.14)}50%{box-shadow:0 0 0 16px rgba(20,102,240,0),0 18px 40px rgba(11,37,69,.14)}}
+@keyframes warnPulse{0%,100%{box-shadow:0 0 0 0 rgba(234,88,12,.55)}50%{box-shadow:0 0 0 12px rgba(234,88,12,0)}}
+@keyframes press{0%,100%{transform:scale(1)}50%{transform:scale(.94)}}
+@keyframes typeIn{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes stamp{0%{opacity:0;transform:scale(1.7) rotate(-7deg)}60%{opacity:1;transform:scale(.95) rotate(-7deg)}100%{opacity:1;transform:scale(1) rotate(-7deg)}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes march{to{stroke-dashoffset:-72}}
+@keyframes arc{from{stroke-dashoffset:302}to{stroke-dashoffset:0}}
+@keyframes pass{from{transform:translateX(0)}to{transform:translateX(196px)}}
+@keyframes toL{from{opacity:1;transform:none}to{opacity:0;transform:translate(-320px,250px) scale(.35)}}
+@keyframes toR{from{opacity:1;transform:none}to{opacity:0;transform:translate(320px,250px) scale(.35)}}
+@keyframes hiO{0%{background:#FFFFFF}100%{background:#FFF1E6;box-shadow:0 0 0 3px #C2410C}}
+@keyframes toGrey{to{background:#94A3B8}}
+@keyframes litRing{0%{box-shadow:0 0 0 0 currentColor;transform:none}8%,92%{box-shadow:0 0 0 4px currentColor,0 16px 30px rgba(11,37,69,.18);transform:translateY(-6px)}100%{box-shadow:0 0 0 0 transparent;transform:none}}
+.ctl{height:44px;min-width:44px;padding:0 14px;border-radius:10px;border:1px solid #2A3E5C;background:#15263F;color:#E6EEF8;font-family:'Lato',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer;white-space:nowrap}
+.ctl:hover{background:#1D3354}
+.ctl.main{background:#1466F0;border-color:#1466F0;color:#fff}
+.ctl.main:hover{background:#0B55D0}
+.chip{height:32px;padding:0 7px;letter-spacing:-.01em;border-radius:16px;border:1px solid #2A3E5C;background:transparent;color:#A9B8CC;font-family:'Lato',sans-serif;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.chip:hover{color:#fff;border-color:#4A6488}
+.chip.done{color:#D5E0EE;border-color:#34507A;background:#16304F}
+.chip.on{color:#0B2545;background:#8FD16F;border-color:#8FD16F}
+</style>
+<style>
+html,body{height:100%}
+body{display:flex;align-items:center;justify-content:center;overflow:hidden}
+#fit{width:1280px;height:870px;transform-origin:center center;flex-shrink:0}
+[hidden]{display:none !important}
+</style>
+</head>
+<body>
+<div id="fit">
+<div style="width: 1280px; height: 870px; background: #0E1B2E; display: flex; flex-direction: column; overflow: hidden;">
+
+<!-- hidden symbol library -->
+<svg width="0" height="0" style="position: absolute; width: 0; height: 0;" aria-hidden="true">
+<defs>
+<symbol id="dc-customer" viewBox="0 0 200 200">
+<path d="M58 88 C52 38 148 38 142 88 L146 124 C132 132 124 116 122 104 L78 104 C76 116 68 132 54 124 Z" fill="#3B2A26"></path>
+<path d="M40 200 C40 150 66 128 100 128 C134 128 160 150 160 200 Z" fill="#23A094"></path>
+<path d="M84 129 L100 152 L116 129 Z" fill="#E6F6F3"></path>
+<rect x="89" y="104" width="22" height="28" rx="8" fill="#E2A77F"></rect>
+<ellipse cx="100" cy="82" rx="32" ry="36" fill="#F1C39E"></ellipse>
+<path d="M66 76 C68 42 132 40 136 78 C118 64 94 60 70 80 Z" fill="#3B2A26"></path>
+<circle cx="88" cy="87" r="3.8" fill="#1F2937"></circle>
+<circle cx="112" cy="87" r="3.8" fill="#1F2937"></circle>
+<circle cx="79" cy="98" r="5.5" fill="#F29A86" opacity=".45"></circle>
+<circle cx="121" cy="98" r="5.5" fill="#F29A86" opacity=".45"></circle>
+<path d="M90 102 Q100 109 110 102" stroke="#A0523D" stroke-width="3" fill="none" stroke-linecap="round"></path>
+</symbol>
+<symbol id="dc-agent" viewBox="0 0 200 200">
+<path d="M40 200 C40 150 66 128 100 128 C134 128 160 150 160 200 Z" fill="#1466F0"></path>
+<path d="M84 129 L100 150 L116 129 Z" fill="#FFFFFF"></path>
+<rect x="89" y="104" width="22" height="28" rx="8" fill="#B97A55"></rect>
+<ellipse cx="68" cy="88" rx="7" ry="10" fill="#C98B63"></ellipse>
+<ellipse cx="132" cy="88" rx="7" ry="10" fill="#C98B63"></ellipse>
+<ellipse cx="100" cy="82" rx="32" ry="36" fill="#D39A72"></ellipse>
+<path d="M67 80 C62 42 138 40 133 80 C126 60 80 58 67 80 Z" fill="#1F1A17"></path>
+<circle cx="88" cy="87" r="3.8" fill="#1F2937"></circle>
+<circle cx="112" cy="87" r="3.8" fill="#1F2937"></circle>
+<path d="M89 101 Q100 109 111 101" stroke="#7A3B2A" stroke-width="3" fill="none" stroke-linecap="round"></path>
+</symbol>
+<symbol id="dc-server" viewBox="0 0 120 150">
+<rect x="10" y="6" width="100" height="40" rx="8" fill="#243B5E"></rect>
+<rect x="10" y="54" width="100" height="40" rx="8" fill="#2E4A73"></rect>
+<rect x="10" y="102" width="100" height="40" rx="8" fill="#243B5E"></rect>
+<circle cx="28" cy="26" r="5" fill="#8FD16F"></circle><circle cx="28" cy="74" r="5" fill="#8FD16F"></circle><circle cx="28" cy="122" r="5" fill="#8FD16F"></circle>
+<rect x="46" y="22" width="50" height="8" rx="4" fill="#5B7BA6"></rect><rect x="46" y="70" width="50" height="8" rx="4" fill="#5B7BA6"></rect><rect x="46" y="118" width="50" height="8" rx="4" fill="#5B7BA6"></rect>
+</symbol>
+<symbol id="dc-check" viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="11" fill="#3E9B2F"></circle>
+<path d="M6.5 12.5 L10.3 16.2 L17.5 8.6" stroke="#FFFFFF" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+</symbol>
+<symbol id="dc-x" viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="11" fill="#C2410C"></circle>
+<path d="M8 8l8 8M16 8l-8 8" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"></path>
+</symbol>
+<symbol id="dc-warn" viewBox="0 0 24 24">
+<path d="M12 3 L22 20.5 H2 Z" fill="#F2A93B" stroke="#8A5200" stroke-width="1.4" stroke-linejoin="round"></path>
+<path d="M12 9.5 V14.5" stroke="#5A3500" stroke-width="2.2" stroke-linecap="round"></path>
+<circle cx="12" cy="17.4" r="1.3" fill="#5A3500"></circle>
+</symbol>
+<symbol id="dc-ticket" viewBox="0 0 24 24">
+<path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4z" fill="none" stroke="currentColor" stroke-width="1.8"></path>
+<path d="M9 5v14" stroke="currentColor" stroke-width="1.8" stroke-dasharray="2 2.4"></path>
+</symbol>
+<symbol id="dc-clock" viewBox="0 0 24 24">
+<circle cx="12" cy="13" r="8.5" fill="none" stroke="currentColor" stroke-width="1.9"></circle>
+<path d="M12 8.5V13l3 2M10 2.5h4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"></path>
+</symbol>
+<symbol id="dc-phone" viewBox="0 0 24 24">
+<path d="M5 3.5h3.5l2 5-2.5 1.6a11 11 0 0 0 5.4 5.4l1.6-2.5 5 2v3.5a2 2 0 0 1-2 2A17 17 0 0 1 3 5.5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"></path>
+</symbol>
+<symbol id="dc-cal" viewBox="0 0 24 24">
+<rect x="3" y="5" width="18" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.9"></rect>
+<path d="M16 3v4M8 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"></path>
+</symbol>
+<symbol id="dc-mail" viewBox="0 0 24 24">
+<rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.9"></rect>
+<path d="M3.5 7l8.5 6 8.5-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"></path>
+</symbol>
+<symbol id="dc-lock" viewBox="0 0 24 24">
+<rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.9"></rect>
+<path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.9"></path>
+<circle cx="12" cy="15.6" r="1.6" fill="currentColor"></circle>
+</symbol>
+<symbol id="dc-doc" viewBox="0 0 40 48">
+<path d="M4 4h22l10 10v30H4z" fill="#FFFFFF" stroke="#6D4AE0" stroke-width="2.4" stroke-linejoin="round"></path>
+<path d="M26 4v10h10" fill="none" stroke="#6D4AE0" stroke-width="2.4" stroke-linejoin="round"></path>
+<path d="M11 24h18M11 31h18M11 38h12" stroke="#B9A8F2" stroke-width="3" stroke-linecap="round"></path>
+</symbol>
+<symbol id="dc-img" viewBox="0 0 24 24">
+<rect x="3" y="4" width="18" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.9"></rect>
+<circle cx="9" cy="9.5" r="1.8" fill="currentColor"></circle>
+<path d="M3.5 17l5-5 4 4 3-3 5 5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"></path>
+</symbol>
+<symbol id="dc-play" viewBox="0 0 24 24">
+<path d="M7 4.5v15l12-7.5z" fill="currentColor"></path>
+</symbol>
+<symbol id="dc-edit" viewBox="0 0 24 24">
+<path d="M4 20h4L19 9l-4-4L4 16z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"></path>
+<path d="M13.5 6.5l4 4" fill="none" stroke="currentColor" stroke-width="1.9"></path>
+</symbol>
+</defs>
+</svg>
+
+<!-- ===================== STAGE ===================== -->
+<div id="stage" class="stage" style="position: relative; width: 1280px; height: 720px; overflow: hidden; background: #F3F6FB; flex-shrink: 0;">
+
+<div style="position: absolute; left: -160px; top: -200px; width: 560px; height: 560px; border-radius: 50%; background: #E6EEFA;"></div>
+<div style="position: absolute; right: -120px; bottom: -220px; width: 520px; height: 520px; border-radius: 50%; background: #EAF5E4;"></div>
+
+<div style="position: absolute; left: 28px; top: 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 700; color: #3B4F6B; letter-spacing: .02em;">
+<span id="steps" style="display: contents;"></span>
+<span class="disp" style="font-weight: 700; color: #0B2545; font-size: 16px;">MotionPoint Support</span>
+<span style="width: 4px; height: 4px; border-radius: 2px; background: #94A3B8;"></span>
+<span>New Agent Training &middot; Translation</span>
+</div>
+
+<!-- ============ SCENE 0 · INTRO ============ -->
+<template id="scene-0">
+<div style="position: absolute; left: 0; top: 72px; width: 1280px; height: 648px;">
+<div style="position: absolute; left: 0; top: 24px; width: 1280px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center;"><div style="font-size: 16px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; color: #3E8A2A; animation: up .8s .4s both;">Customer Support &middot; New Agent Training</div><h1 class="disp" style="margin: 0; font-size: 60px; line-height: 1.05; font-weight: 700; color: #0B2545; animation: up .9s .9s both;">Translation cases</h1><p style="margin: 0; font-size: 23px; color: #3B4F6B; max-width: 1040px; animation: up .9s 1.6s both;">New content on the translated site isn&rsquo;t translated yet.</p></div>
+<div style="position: absolute; left: 40px; top: 220px; width: 380px; height: 180px; border-radius: 16px; background: #DCE7F7; border: 3px solid #1466F0; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 5s both;"><span class="eb" style="color: #1466F0;">What</span><span style="font-size: 17px; font-weight: 700; color: #0B2545; line-height: 1.4;">A customer sees new or updated content on their translated site that isn&rsquo;t translated yet, and reports it in a case.</span></div>
+<div style="position: absolute; left: 450px; top: 220px; width: 380px; height: 180px; border-radius: 16px; background: #FCE3CC; border: 3px solid #C2410C; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 9s both;"><span class="eb" style="color: #C2410C;">Why it happens</span><span style="font-size: 17px; font-weight: 700; color: #0B2545; line-height: 1.4;">We have a 1 business-day SLA to auto-crawl, detect and queue new content. Many customers don&rsquo;t want to wait.</span></div>
+<div style="position: absolute; left: 860px; top: 220px; width: 380px; height: 180px; border-radius: 16px; background: #E5F4DE; border: 3px solid #2F7A22; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 13s both;"><span class="eb" style="color: #2F7A22;">Who owns it</span><span style="font-size: 17px; font-weight: 700; color: #0B2545; line-height: 1.4;">You push the content, the TAM assigns a linguist, a PE activates it if needed. You validate and close.</span></div>
+<div style="position: absolute; left: 160px; top: 436px; width: 960px; height: 104px; border-radius: 20px; background: #0B2545; color: #FFFFFF; display: flex; align-items: center; gap: 18px; padding: 0 30px; animation: up .7s 19s both;"><svg width="40" height="40" style="flex-shrink: 0; color: #8FD16F;"><use href="#dc-check"></use></svg><span style="font-size: 21px; font-weight: 900; line-height: 1.4;">Push it, find the PID, hand it to the TAM with everything they need.</span></div>
+</div>
+</template>
+
+<!-- ============ SCENE 1 · SPOT IT ============ -->
+<template id="scene-1">
+<div style="position: absolute; left: 0; top: 72px; width: 1280px; height: 648px;">
+<div class="sh" style="animation: up .6s .2s both;"><div class="h2">Part 1: Spot a Translation case</div><div class="h2s">New content, not translated yet.</div></div>
+<div class="sc" style="left: 40px; width: 389.33px; background: #DCE7F7; color: #1466F0; animation: up .6s 1.4s both, litRing 18s 4s both;"><div class="sr"><span class="sn" style="background: #1466F0;">1</span><span class="tg" style="background: #1466F0;">Details</span></div><div class="st">The case type</div><svg class="mk" width="28" height="28" style="animation: pop .5s 21.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="sc" style="left: 445.33px; width: 389.33px; background: #DCE7F7; color: #1466F0; animation: up .6s 1.6s both, litRing 18s 22s both;"><div class="sr"><span class="sn" style="background: #1466F0;">2</span><span class="tg" style="background: #1466F0;">URL</span></div><div class="st">What they report</div><svg class="mk" width="28" height="28" style="animation: pop .5s 39.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="sc" style="left: 850.67px; width: 389.33px; background: #E5F4DE; color: #2F7A22; animation: up .6s 1.8s both, litRing 18s 40s both;"><div class="sr"><span class="sn" style="background: #2F7A22;">3</span><span class="tg" style="background: #2F7A22;">SLA</span></div><div class="st">Why it happens</div><svg class="mk" width="28" height="28" style="animation: pop .5s 57.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="panel" style="animation: up .7s 2.2s both;">
+<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: #8A99AD; animation: fadeOut .5s 3.8s forwards;">A new case comes in.</div>
+<div class="win" style="animation: win 18s 4s both;">
+<div class="shot" style="background: #DCE7F7; display: block;"><div class="wc" style="left: 20px; top: 14px; width: 660px; height: 236px; animation: zoomIn .6s 4.5s both;"><div style="height: 40px; background: #0B5CAB; color: #FFFFFF; display: flex; align-items: center; gap: 10px; padding: 0 16px; font-size: 14px; font-weight: 900;"><span style="width: 24px; height: 24px; border-radius: 6px; background: #FFFFFF; color: #0B5CAB; display: flex; align-items: center; justify-content: center; font-size: 11px;">SF</span>Case Information</div><div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 10px;"><div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 16px;"><div style="display: flex; flex-direction: column; gap: 3px;"><span class="lab" style="font-size: 10px;">Subject</span><div style="height: 30px; border-radius: 7px; border: 1px solid #CBD2DC; background: #FFFFFF; display: flex; align-items: center; padding: 0 9px; font-size: 13px; font-weight: 700; color: #0B2545;">Wi-Fi Pro web translation</div></div><div style="display: flex; flex-direction: column; gap: 3px;"><span class="lab" style="font-size: 10px;">Priority</span><div style="height: 30px; border-radius: 7px; border: 1px solid #CBD2DC; background: #FFFFFF; display: flex; align-items: center; padding: 0 9px; font-size: 13px; font-weight: 700; color: #0B2545;">Standard</div></div><div style="display: flex; flex-direction: column; gap: 3px;"><span class="lab" style="font-size: 10px;">Case Number</span><div style="height: 30px; border-radius: 7px; border: 1px solid #CBD2DC; background: #FFFFFF; display: flex; align-items: center; padding: 0 9px; font-size: 13px; font-weight: 700; color: #0B2545;">00123456</div></div><div style="display: flex; flex-direction: column; gap: 3px;"><span class="lab" style="font-size: 10px;">Type</span><div style="height: 30px; border-radius: 7px; border: 2px solid #1466F0; background: #EAF2FF; display: flex; align-items: center; padding: 0 9px; font-size: 13px; font-weight: 700; color: #0B2545; animation: pop .45s 6.5s both;">Translation</div></div><div style="display: flex; flex-direction: column; gap: 3px;"><span class="lab" style="font-size: 10px;">Business Entity</span><div style="height: 30px; border-radius: 7px; border: 1px solid #CBD2DC; background: #FFFFFF; display: flex; align-items: center; padding: 0 9px; font-size: 13px; font-weight: 700; color: #0B2545;">Example Co. - Web</div></div><div style="display: flex; flex-direction: column; gap: 3px;"><span class="lab" style="font-size: 10px;">Language</span><div style="height: 30px; border-radius: 7px; border: 1px solid #CBD2DC; background: #FFFFFF; display: flex; align-items: center; padding: 0 9px; font-size: 13px; font-weight: 700; color: #0B2545;">Spanish</div></div></div></div></div><div style="position: absolute; left: 20px; top: 266px; width: 660px; height: 112px; border-radius: 20px; background: #0B2545; color: #FFFFFF; display: flex; align-items: center; gap: 18px; padding: 0 30px; animation: up .7s 10s both;"><span style="font-size: 16px; font-weight: 900; line-height: 1.45;">In the case&rsquo;s <b>Details</b> tab, <b>Type</b> says <span style="color: #FFD27A;">Translation</span>.</span></div></div>
+<div class="tc2">
+<div class="eb" style="color: #1466F0;">Spot it &middot; 1 of 3</div>
+<div class="tt" style="font-size: 26px;">The case type</div>
+<div class="bl" style="animation: fromR .6s 5.5s both;"><span class="bn" style="background: #DCE7F7; color: #1466F0;">1</span><span class="bt" style="font-size: 18px;">In the case&rsquo;s Details tab, check <b>Type</b>.</span></div>
+<div class="bl" style="animation: fromR .6s 8s both;"><span class="bn" style="background: #DCE7F7; color: #1466F0;">2</span><span class="bt" style="font-size: 18px;">Translation = new content on the translated site isn&rsquo;t translated yet.</span></div>
+</div>
+</div>
+<div class="win" style="animation: win 18s 22s both;">
+<div class="shot" style="background: #DCE7F7; display: block;"><div class="wc" style="left: 20px; top: 14px; width: 660px; height: 150px; animation: zoomIn .6s 22.5s both;"><div style="height: 40px; background: #0B5CAB; color: #FFFFFF; display: flex; align-items: center; gap: 10px; padding: 0 16px; font-size: 14px; font-weight: 900;"><span style="width: 24px; height: 24px; border-radius: 6px; background: #FFFFFF; color: #0B5CAB; display: flex; align-items: center; justify-content: center; font-size: 11px;">SF</span>Description</div><div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 10px;"><span style="font-size: 14px; color: #0B2545; line-height: 1.6;">Hi MP team,<br><span style="padding: 2px 4px; box-shadow: 0 0 0 3px #F04438; animation: pop .45s 24s both;">Please translate the missing content from this page</span><br><span class="mono" style="font-size: 12px; color: #1466F0;">https://es.example.com/wifi/pro/</span></span></div></div><div class="wc" style="left: 20px; top: 180px; width: 660px; height: 200px; display: flex; flex-direction: column; animation: zoomIn .6s 26s both;"><div class="bar"><span class="dot" style="background: #F28B82;"></span><span class="dot" style="background: #F6C453;"></span><span class="dot" style="background: #8FD16F;"></span><div class="mono url" style="font-size: 11px;">https://es.example.com/wifi/pro/</div></div><div style="height: 30px; display: flex; align-items: center; gap: 16px; padding: 0 14px; border-bottom: 1px solid #DCE1E8; font-size: 11.5px; font-weight: 700; color: #0B2545;"><b style="color: #1466F0;">Example Co.</b><span>Tienda</span><span>Ofertas</span><span>Ayuda</span></div><div style="flex: 1; margin: 10px 14px; border-radius: 10px; background: linear-gradient(120deg, #E9F1FB, #DCE7F7); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 11px; font-weight: 700; color: #3B4F6B;">Wi-Fi Pro</span><b style="font-size: 20px; color: #0B2545;">Mejora tu experiencia de Wi-Fi</b><span style="font-size: 13px; color: #0B2545; padding: 4px 6px; align-self: flex-start; background: #FFF04D; box-shadow: 0 0 0 3px #F04438; animation: pop .45s 28s both;">Eliminate dead zones and get faster Wi-Fi in every room.</span><span style="align-self: flex-start; margin-top: auto; padding: 6px 14px; border-radius: 999px; background: #0B2545; color: #FFFFFF; font-size: 11.5px; font-weight: 900;">Obt&eacute;n Wi-Fi Pro</span></div></div></div>
+<div class="tc2">
+<div class="eb" style="color: #1466F0;">Spot it &middot; 2 of 3</div>
+<div class="tt" style="font-size: 26px;">What the customer reports</div>
+<div class="bl" style="animation: fromR .6s 23.5s both;"><span class="bn" style="background: #DCE7F7; color: #1466F0;">1</span><span class="bt" style="font-size: 18px;">A URL on the translated site, and what&rsquo;s missing.</span></div>
+<div class="bl" style="animation: fromR .6s 28s both;"><span class="bn" style="background: #FCE3CC; color: #C2410C;">2</span><span class="bt" style="font-size: 18px;">The page is in Spanish, but one block is still in English.</span></div>
+</div>
+</div>
+<div class="win" style="animation: win 18s 40s both;">
+<div class="shot" style="background: #E5F4DE; display: block;"><div style="position: absolute; left: 20px; top: 20px; width: 660px; display: flex; gap: 10px; align-items: center;"><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #DCE7F7; border: 3px solid #1466F0; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 41s both; position: relative; left: auto; top: auto; width: 200px; height: 150px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">New content</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Added on the origin site</span></div><span style="font-size: 20px; color: #94A3B8;">&rarr;</span><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #E5F4DE; border: 3px solid #2F7A22; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 42.6s both; position: relative; left: auto; top: auto; width: 200px; height: 150px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Auto-crawl</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Detects and queues it within 1 business day</span></div><span style="font-size: 20px; color: #94A3B8;">&rarr;</span><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #FCE3CC; border: 3px solid #C2410C; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 44.2s both; position: relative; left: auto; top: auto; width: 200px; height: 150px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Customer</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Doesn&rsquo;t want to wait: opens a case</span></div></div><div style="position: absolute; left: 20px; top: 200px; width: 660px; height: 176px; border-radius: 20px; background: #0B2545; color: #FFFFFF; display: flex; align-items: center; gap: 18px; padding: 0 30px; animation: up .7s 47s both;"><svg width="34" height="34" style="flex-shrink: 0; color: #8FD16F;"><use href="#dc-clock"></use></svg><span style="font-size: 16px; font-weight: 900; line-height: 1.45;">Our system would get there on its own. Your job is to speed it up: push the content now, so it&rsquo;s queued today.</span></div></div>
+<div class="tc2">
+<div class="eb" style="color: #2F7A22;">Spot it &middot; 3 of 3</div>
+<div class="tt" style="font-size: 26px;">Why it happens</div>
+<div class="bl" style="animation: fromR .6s 41.5s both;"><span class="bn" style="background: #E5F4DE; color: #2F7A22;">1</span><span class="bt" style="font-size: 18px;">We have a 1 business-day SLA to auto-crawl, detect and queue new content.</span></div>
+<div class="bl" style="animation: fromR .6s 44.5s both;"><span class="bn" style="background: #FCE3CC; color: #C2410C;">2</span><span class="bt" style="font-size: 18px;">Many customers don&rsquo;t want to wait, so they open a case.</span></div>
+</div>
+</div>
+</div>
+</div>
+</template>
+
+<!-- ============ SCENE 2 · SET UP ============ -->
+<template id="scene-2">
+<div style="position: absolute; left: 0; top: 72px; width: 1280px; height: 648px;">
+<div class="sh" style="animation: up .6s .2s both;"><div class="h2">Part 2: Confirm and acknowledge</div><div class="h2s">Get the basics right before you start.</div></div>
+<div class="sc" style="left: 40px; width: 389.33px; background: #DCE7F7; color: #1466F0; animation: up .6s 1.4s both, litRing 18s 4s both;"><div class="sr"><span class="sn" style="background: #1466F0;">1</span><span class="tg" style="background: #1466F0;">Check</span></div><div class="st">Confirm the basics</div><svg class="mk" width="28" height="28" style="animation: pop .5s 21.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="sc" style="left: 445.33px; width: 389.33px; background: #E5F4DE; color: #2F7A22; animation: up .6s 1.6s both, litRing 18s 22s both;"><div class="sr"><span class="sn" style="background: #2F7A22;">2</span><span class="tg" style="background: #2F7A22;">Note</span></div><div class="st">Acknowledge</div><svg class="mk" width="28" height="28" style="animation: pop .5s 39.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="sc" style="left: 850.67px; width: 389.33px; background: #FCE3CC; color: #C2410C; animation: up .6s 1.8s both, litRing 18s 40s both;"><div class="sr"><span class="sn" style="background: #C2410C;">3</span><span class="tg" style="background: #C2410C;">Status</span></div><div class="st">Pending + due date</div><svg class="mk" width="28" height="28" style="animation: pop .5s 57.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="panel" style="animation: up .7s 2.2s both;">
+<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: #8A99AD; animation: fadeOut .5s 3.8s forwards;">Before anything else.</div>
+<div class="win" style="animation: win 18s 4s both;">
+<div class="shot" style="background: #DCE7F7; display: block;"><div style="position: absolute; left: 30px; top: 20px; width: 640px; display: flex; flex-direction: column; gap: 10px;"><div class="row" style="height: 56px; font-size: 15.5px; animation: up .45s 5s both;"><svg width="24" height="24" style="flex-shrink: 0; color: #1466F0;"><use href="#dc-doc"></use></svg>The reported URLs work and point to the translated site</div><div class="row" style="height: 56px; font-size: 15.5px; animation: up .45s 6.4s both;"><svg width="24" height="24" style="flex-shrink: 0; color: #1466F0;"><use href="#dc-img"></use></svg>Screenshots show what&rsquo;s missing</div><div class="row" style="height: 56px; font-size: 15.5px; animation: up .45s 7.8s both;"><svg width="24" height="24" style="flex-shrink: 0; color: #1466F0;"><use href="#dc-edit"></use></svg>The instructions are clear</div><div class="row" style="height: 56px; font-size: 15.5px; animation: up .45s 9.2s both;"><svg width="24" height="24" style="flex-shrink: 0; color: #1466F0;"><use href="#dc-lock"></use></svg>Credentials, if it&rsquo;s behind a login</div></div><div style="position: absolute; left: 30px; top: 290px; width: 640px; height: 88px; border-radius: 20px; background: #0B2545; color: #FFFFFF; display: flex; align-items: center; gap: 18px; padding: 0 30px; animation: up .7s 12s both;"><span style="font-size: 15.5px; font-weight: 900; line-height: 1.45;">Something unclear or missing? Ask the customer first.</span></div></div>
+<div class="tc2">
+<div class="eb" style="color: #1466F0;">Set up &middot; 1 of 3</div>
+<div class="tt" style="font-size: 26px;">Confirm the basics first</div>
+<div class="bl" style="animation: fromR .6s 5.5s both;"><span class="bn" style="background: #DCE7F7; color: #1466F0;">1</span><span class="bt" style="font-size: 18px;">URLs, screenshots and instructions are clear.</span></div>
+<div class="bl" style="animation: fromR .6s 10s both;"><span class="bn" style="background: #FCE3CC; color: #C2410C;">2</span><span class="bt" style="font-size: 18px;">Fill any gaps before you push anything.</span></div>
+</div>
+</div>
+<div class="win" style="animation: win 18s 22s both;">
+<div class="shot" style="background: #E5F4DE; display: block;"><div class="wc" style="left: 20px; top: 14px; width: 660px; height: 240px; animation: zoomIn .6s 22.5s both;"><div style="height: 40px; background: #0B5CAB; color: #FFFFFF; display: flex; align-items: center; gap: 10px; padding: 0 16px; font-size: 14px; font-weight: 900;"><span style="width: 24px; height: 24px; border-radius: 6px; background: #FFFFFF; color: #0B5CAB; display: flex; align-items: center; justify-content: center; font-size: 11px;">SF</span>Customer-visible note &middot; To: All</div><div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 10px;"><span style="font-size: 15px; color: #0B2545; line-height: 1.6; animation: fadeIn .5s 23.5s both;">Hi [Name],<br><br>Thanks for your request.<br>We will have the team review and follow up with you if any questions arise.<br><br>Best regards,<br>[Your name]</span></div></div><div style="position: absolute; left: 20px; top: 270px; width: 660px; height: 108px; border-radius: 20px; background: #0B2545; color: #FFFFFF; display: flex; align-items: center; gap: 18px; padding: 0 30px; animation: up .7s 29s both;"><span style="font-size: 15.5px; font-weight: 900; line-height: 1.45;">Short and friendly. It tells the customer someone is on it.</span></div></div>
+<div class="tc2">
+<div class="eb" style="color: #2F7A22;">Set up &middot; 2 of 3</div>
+<div class="tt" style="font-size: 26px;">Acknowledge the customer</div>
+<div class="bl" style="animation: fromR .6s 23.5s both;"><span class="bn" style="background: #E5F4DE; color: #2F7A22;">1</span><span class="bt" style="font-size: 18px;">Add a customer-visible note.</span></div>
+<div class="bl" style="animation: fromR .6s 26s both;"><span class="bn" style="background: #E5F4DE; color: #2F7A22;">2</span><span class="bt" style="font-size: 18px;">Thank them, and say the team will review it.</span></div>
+</div>
+</div>
+<div class="win" style="animation: win 18s 40s both;">
+<div class="shot" style="background: #FCE3CC; display: block;"><div style="position: absolute; left: 20px; top: 20px; width: 320px; height: 200px; border-radius: 16px; background: #DCE7F7; border: 3px solid #1466F0; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 42s both;"><svg width="30" height="30" style="flex-shrink: 0; color: #1466F0;"><use href="#dc-cal"></use></svg><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Standard</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Due date: next week.</span></div><div style="position: absolute; left: 360px; top: 20px; width: 320px; height: 200px; border-radius: 16px; background: #FFF1F0; border: 3px solid #B42318; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 43.5s both;"><svg width="30" height="30" style="flex-shrink: 0; color: #B42318;"><use href="#dc-clock"></use></svg><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Express / Critical</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Due date: next day.</span></div><div style="position: absolute; left: 20px; top: 240px; width: 660px; height: 136px; border-radius: 20px; background: #0B2545; color: #FFFFFF; display: flex; align-items: center; gap: 18px; padding: 0 30px; animation: up .7s 46s both;"><span style="font-size: 16px; font-weight: 900; line-height: 1.45;">While you wait on the TAM, set the case to <span style="color: #FFD27A;">Pending</span> and update the due date.</span></div></div>
+<div class="tc2">
+<div class="eb" style="color: #C2410C;">Set up &middot; 3 of 3</div>
+<div class="tt" style="font-size: 26px;">Pending, and the due date</div>
+<div class="bl" style="animation: fromR .6s 41.5s both;"><span class="bn" style="background: #FCE3CC; color: #C2410C;">1</span><span class="bt" style="font-size: 18px;">Set the case status to Pending while you wait.</span></div>
+<div class="bl" style="animation: fromR .6s 43s both;"><span class="bn" style="background: #DCE7F7; color: #1466F0;">2</span><span class="bt" style="font-size: 18px;">Standard: due next week.</span></div>
+<div class="bl" style="animation: fromR .6s 44.5s both;"><span class="bn" style="background: #FFF1F0; color: #B42318;">3</span><span class="bt" style="font-size: 18px;">Express / Critical: due next day.</span></div>
+</div>
+</div>
+</div>
+</div>
+</template>
+
+<!-- ============ SCENE 3 · PUSH IT ============ -->
+<template id="scene-3">
+<div style="position: absolute; left: 0; top: 72px; width: 1280px; height: 648px;">
+<div class="sh" style="animation: up .6s .2s both;"><div class="h2">Part 3: Push the content</div><div class="h2s">Three ways to get it into the queue.</div></div>
+<div class="sc" style="left: 40px; width: 389.33px; background: #DCE7F7; color: #1466F0; animation: up .6s 1.4s both, litRing 20s 4s both;"><div class="sr"><span class="sn" style="background: #1466F0;">1</span><span class="tg" style="background: #1466F0;">URL</span></div><div class="st">From the browser</div><svg class="mk" width="28" height="28" style="animation: pop .5s 23.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="sc" style="left: 445.33px; width: 389.33px; background: #E5F4DE; color: #2F7A22; animation: up .6s 1.6s both, litRing 20s 24s both;"><div class="sr"><span class="sn" style="background: #2F7A22;">2</span><span class="tg" style="background: #2F7A22;">Proxy</span></div><div class="st">With Charles</div><svg class="mk" width="28" height="28" style="animation: pop .5s 43.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="sc" style="left: 850.67px; width: 389.33px; background: #FCE3CC; color: #C2410C; animation: up .6s 1.8s both, litRing 20s 44s both;"><div class="sr"><span class="sn" style="background: #C2410C;">3</span><span class="tg" style="background: #C2410C;">ControlCenter</span></div><div class="st">Or schedule it</div><svg class="mk" width="28" height="28" style="animation: pop .5s 63.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="panel" style="animation: up .7s 2.2s both;">
+<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: #8A99AD; animation: fadeOut .5s 3.8s forwards;">Into the queue.</div>
+<div class="win" style="animation: win 20s 4s both;">
+<div class="shot" style="background: #DCE7F7; display: block;"><div class="wc" style="left: 20px; top: 14px; width: 660px; height: 236px; display: flex; flex-direction: column; animation: zoomIn .6s 4.5s both;"><div class="bar"><span class="dot" style="background: #F28B82;"></span><span class="dot" style="background: #F6C453;"></span><span class="dot" style="background: #8FD16F;"></span><div class="mono url" style="font-size: 11px;">https://es.example.com/wifi/pro/<span style="background: #FFF04D; padding: 0 3px; animation: pop .45s 6.5s both;">?mpactionid=16408&amp;Patel</span></div></div><div style="height: 30px; display: flex; align-items: center; gap: 16px; padding: 0 14px; border-bottom: 1px solid #DCE1E8; font-size: 11.5px; font-weight: 700; color: #0B2545;"><b style="color: #1466F0;">Example Co.</b><span>Tienda</span><span>Ofertas</span><span>Ayuda</span></div><div style="flex: 1; margin: 10px 14px; border-radius: 10px; background: linear-gradient(120deg, #E9F1FB, #DCE7F7); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 11px; font-weight: 700; color: #3B4F6B;">Wi-Fi Pro</span><b style="font-size: 20px; color: #0B2545;">Mejora tu experiencia de Wi-Fi</b><span style="font-size: 13px; color: #0B2545; padding: 4px 6px; align-self: flex-start; ">Eliminate dead zones and get faster Wi-Fi in every room.</span><span style="align-self: flex-start; margin-top: auto; padding: 6px 14px; border-radius: 999px; background: #0B2545; color: #FFFFFF; font-size: 11.5px; font-weight: 900;">Obt&eacute;n Wi-Fi Pro</span></div></div><div style="position: absolute; left: 20px; top: 266px; width: 660px; display: flex; gap: 10px;"><div class="row" style="flex: 1; height: auto; min-height: 92px; padding: 10px 12px; flex-direction: column; align-items: flex-start; gap: 4px; animation: up .45s 9s both;"><b style="font-size: 13.5px;">?mpactionid=16408</b><span style="font-size: 12px; color: #3B4F6B;">Tells our system to queue the page</span></div><div class="row" style="flex: 1; height: auto; min-height: 92px; padding: 10px 12px; flex-direction: column; align-items: flex-start; gap: 4px; animation: up .45s 10.3s both;"><b style="font-size: 13.5px;">&amp;your last name</b><span style="font-size: 12px; color: #3B4F6B;">Your marker, to find it later</span></div><div class="row" style="flex: 1; height: auto; min-height: 92px; padding: 10px 12px; flex-direction: column; align-items: flex-start; gap: 4px; animation: up .45s 11.6s both;"><b style="font-size: 13.5px;">Load the page</b><span style="font-size: 12px; color: #3B4F6B;">Go through any steps to show the content</span></div></div></div>
+<div class="tc2">
+<div class="eb" style="color: #1466F0;">Push it &middot; 1 of 3</div>
+<div class="tt" style="font-size: 26px;">From the browser</div>
+<div class="bl" style="animation: fromR .6s 5.5s both;"><span class="bn" style="background: #DCE7F7; color: #1466F0;">1</span><span class="bt" style="font-size: 18px;">Add <b>?mpactionid=16408</b> plus your last name to the page URL.</span></div>
+<div class="bl" style="animation: fromR .6s 10s both;"><span class="bn" style="background: #DCE7F7; color: #1466F0;">2</span><span class="bt" style="font-size: 18px;">Load the page, and reach the missing content.</span></div>
+<div class="call" style="background: #0B2545; animation: pop .5s 14s both;"><span class="lab" style="color: #FFFFFF; opacity: .8;">Remember</span><span style="font-size: 18px; font-weight: 900; line-height: 1.35;">Pushing only queues the content for translation.</span></div>
+</div>
+</div>
+<div class="win" style="animation: win 20s 24s both;">
+<div class="shot" style="background: #E5F4DE; display: block;"><div style="position: absolute; left: 20px; top: 20px; width: 660px; display: flex; gap: 10px; align-items: center;"><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #DCE7F7; border: 3px solid #1466F0; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 25s both; position: relative; left: auto; top: auto; width: 200px; height: 150px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Rewrite rule</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">mpactionid=16408 + your last name</span></div><span style="font-size: 20px; color: #94A3B8;">&rarr;</span><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #E3E9F2; border: 3px solid #0B2545; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 26.6s both; position: relative; left: auto; top: auto; width: 200px; height: 150px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Go through the flow</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Log in, click through, like the customer</span></div><span style="font-size: 20px; color: #94A3B8;">&rarr;</span><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #E5F4DE; border: 3px solid #2F7A22; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 28.2s both; position: relative; left: auto; top: auto; width: 200px; height: 150px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">It&rsquo;s queued</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Every request on that host</span></div></div><div style="position: absolute; left: 20px; top: 200px; width: 660px; height: 176px; border-radius: 20px; background: #0B2545; color: #FFFFFF; display: flex; align-items: center; gap: 18px; padding: 0 30px; animation: up .7s 30s both;"><svg width="34" height="34" style="flex-shrink: 0; color: #8FD16F;"><use href="#dc-play"></use></svg><span style="display: flex; flex-direction: column; gap: 8px;"><span style="font-size: 17px; font-weight: 900;">Behind a login, or several steps into a flow?</span><span style="font-size: 15px; font-weight: 700; opacity: .9; line-height: 1.45;">Use Charles (proxy debugging). Its Rewrite adds the parameter to every request, so the content gets queued from where it really comes from. See the Charles video.</span></span></div></div>
+<div class="tc2">
+<div class="eb" style="color: #2F7A22;">Push it &middot; 2 of 3</div>
+<div class="tt" style="font-size: 26px;">With Charles</div>
+<div class="bl" style="animation: fromR .6s 25.5s both;"><span class="bn" style="background: #E5F4DE; color: #2F7A22;">1</span><span class="bt" style="font-size: 18px;">For content the URL trick can&rsquo;t reach.</span></div>
+<div class="bl" style="animation: fromR .6s 27.5s both;"><span class="bn" style="background: #E5F4DE; color: #2F7A22;">2</span><span class="bt" style="font-size: 18px;">Rewrite: mpactionid=16408 plus your last name.</span></div>
+<div class="bl" style="animation: fromR .6s 29s both;"><span class="bn" style="background: #E5F4DE; color: #2F7A22;">3</span><span class="bt" style="font-size: 18px;">Go through the flow just like the customer.</span></div>
+</div>
+</div>
+<div class="win" style="animation: win 20s 44s both;">
+<div class="shot" style="background: #FCE3CC; display: block;"><div style="position: absolute; left: 20px; top: 20px; width: 320px; height: 200px; border-radius: 16px; background: #FCE3CC; border: 3px solid #C2410C; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 45.5s both;"><svg width="30" height="30" style="flex-shrink: 0; color: #C2410C;"><use href="#dc-cal"></use></svg><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Schedule the URL</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">In ControlCenter, schedule the page URL for the language.</span></div><div style="position: absolute; left: 360px; top: 20px; width: 320px; height: 200px; border-radius: 16px; background: #E3E9F2; border: 3px solid #0B2545; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 47.5s both;"><svg width="30" height="30" style="flex-shrink: 0;"><use href="#dc-check"></use></svg><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Any of the three</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Browser, Charles, or Schedule. Pick what reaches the content.</span></div><div style="position: absolute; left: 20px; top: 240px; width: 660px; height: 136px; border-radius: 20px; background: #0B2545; color: #FFFFFF; display: flex; align-items: center; gap: 18px; padding: 0 30px; animation: up .7s 50s both;"><svg width="34" height="34" style="flex-shrink: 0; color: #FFD27A;"><use href="#dc-warn"></use></svg><span style="font-size: 16px; font-weight: 900; line-height: 1.45;">Pushing doesn&rsquo;t translate anything. It only puts the content in the queue, ready for the TAM.</span></div></div>
+<div class="tc2">
+<div class="eb" style="color: #C2410C;">Push it &middot; 3 of 3</div>
+<div class="tt" style="font-size: 26px;">Or schedule it</div>
+<div class="bl" style="animation: fromR .6s 45.5s both;"><span class="bn" style="background: #FCE3CC; color: #C2410C;">1</span><span class="bt" style="font-size: 18px;">You can also schedule the URL in ControlCenter.</span></div>
+<div class="bl" style="animation: fromR .6s 50s both;"><span class="bn" style="background: #FFF1F0; color: #B42318;">2</span><span class="bt" style="font-size: 18px;">Whichever way, it only queues the content.</span></div>
+</div>
+</div>
+</div>
+</div>
+</template>
+
+<!-- ============ SCENE 4 · FIND PID ============ -->
+<template id="scene-4">
+<div style="position: absolute; left: 0; top: 72px; width: 1280px; height: 648px;">
+<div class="sh" style="animation: up .6s .2s both;"><div class="h2">Part 4: Find the PID in ControlCenter</div><div class="h2s">Your last name is the marker.</div></div>
+<div class="sc" style="left: 40px; width: 389.33px; background: #DCE7F7; color: #1466F0; animation: up .6s 1.4s both, litRing 18s 4s both;"><div class="sr"><span class="sn" style="background: #1466F0;">1</span><span class="tg" style="background: #1466F0;">WC</span></div><div class="st">Open the project</div><svg class="mk" width="28" height="28" style="animation: pop .5s 21.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="sc" style="left: 445.33px; width: 389.33px; background: #E5F4DE; color: #2F7A22; animation: up .6s 1.6s both, litRing 18s 22s both;"><div class="sr"><span class="sn" style="background: #2F7A22;">2</span><span class="tg" style="background: #2F7A22;">Your name</span></div><div class="st">Search and Update</div><svg class="mk" width="28" height="28" style="animation: pop .5s 39.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="sc" style="left: 850.67px; width: 389.33px; background: #FCE3CC; color: #C2410C; animation: up .6s 1.8s both, litRing 18s 40s both;"><div class="sr"><span class="sn" style="background: #C2410C;">3</span><span class="tg" style="background: #C2410C;">NEW</span></div><div class="st">Copy the PID</div><svg class="mk" width="28" height="28" style="animation: pop .5s 57.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="panel" style="animation: up .7s 2.2s both;">
+<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: #8A99AD; animation: fadeOut .5s 3.8s forwards;">Over to ControlCenter.</div>
+<div class="win" style="animation: win 18s 4s both;">
+<div class="shot" style="background: #DCE7F7; display: block;"><div class="wc" style="left: 20px; top: 14px; width: 660px; height: 64px; padding: 12px 16px; display: flex; flex-direction: column; gap: 6px; animation: zoomIn .6s 4.5s both;"><span style="display: flex; gap: 8px; align-items: center;"><span style="padding: 7px 12px; border-radius: 6px; background: #1466F0; color: #FFFFFF; font-size: 12.5px; font-weight: 700;">All Projects &#9662;</span><span style="flex: 1; height: 32px; border: 2px solid #1466F0; border-radius: 6px; display: flex; align-items: center; padding: 0 10px; font-size: 14px; color: #0B2545; background: #FFF6A8; animation: pop .45s 6s both;">example|</span></span></div><div style="position: absolute; left: 20px; top: 100px; width: 660px; display: flex; gap: 10px; align-items: center;"><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #DCE7F7; border: 3px solid #1466F0; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 7s both; position: relative; left: auto; top: auto; width: 200px; height: 120px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">TPM</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Translation Project Manager</span></div><span style="font-size: 20px; color: #94A3B8;">&rarr;</span><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #DCE7F7; border: 3px solid #1466F0; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 8.6s both; position: relative; left: auto; top: auto; width: 200px; height: 120px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Customer</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Search the account</span></div><span style="font-size: 20px; color: #94A3B8;">&rarr;</span><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #E5F4DE; border: 3px solid #2F7A22; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 10.2s both; position: relative; left: auto; top: auto; width: 200px; height: 120px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">WC</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">On the language card</span></div></div><div style="position: absolute; left: 20px; top: 246px; width: 660px; height: 130px; border-radius: 20px; background: #0B2545; color: #FFFFFF; display: flex; align-items: center; gap: 18px; padding: 0 30px; animation: up .7s 12s both;"><span style="font-size: 16px; font-weight: 900; line-height: 1.45;">ControlCenter &rsaquo; Translation Project Manager &rsaquo; search the customer &rsaquo; WC for the language.</span></div></div>
+<div class="tc2">
+<div class="eb" style="color: #1466F0;">Find it &middot; 1 of 3</div>
+<div class="tt" style="font-size: 26px;">Open the project</div>
+<div class="bl" style="animation: fromR .6s 5.5s both;"><span class="bn" style="background: #DCE7F7; color: #1466F0;">1</span><span class="bt" style="font-size: 18px;">In ControlCenter, open Translation Project Manager.</span></div>
+<div class="bl" style="animation: fromR .6s 7.5s both;"><span class="bn" style="background: #DCE7F7; color: #1466F0;">2</span><span class="bt" style="font-size: 18px;">Search the customer account.</span></div>
+<div class="bl" style="animation: fromR .6s 10s both;"><span class="bn" style="background: #E5F4DE; color: #2F7A22;">3</span><span class="bt" style="font-size: 18px;">Click <b>WC</b> on the right language card.</span></div>
+</div>
+</div>
+<div class="win" style="animation: win 18s 22s both;">
+<div class="shot" style="background: #E5F4DE; display: block;"><div class="wc" style="left: 20px; top: 14px; width: 660px; height: 120px; padding: 12px 16px; display: flex; flex-direction: column; gap: 6px; animation: zoomIn .6s 22.5s both;"><span class="lab">Search Page Queue</span><div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;"><div style="display: flex; flex-direction: column; gap: 3px;"><span class="lab" style="font-size: 10px;">Project Code</span><div style="height: 30px; border-radius: 7px; border: 1px solid #CBD2DC; background: #FFFFFF; display: flex; align-items: center; padding: 0 9px; font-size: 13px; font-weight: 700; color: #0B2545;">All</div></div><div style="display: flex; flex-direction: column; gap: 3px;"><span class="lab" style="font-size: 10px;">Enter Url</span><div style="height: 30px; border-radius: 7px; border: 2px solid #1466F0; background: #EAF2FF; display: flex; align-items: center; padding: 0 9px; font-size: 13px; font-weight: 700; color: #0B2545; animation: pop .45s 24.5s both;">Patel</div></div></div><span style="align-self: flex-start; padding: 6px 16px; border-radius: 6px; background: #1466F0; color: #FFFFFF; font-size: 12.5px; font-weight: 900; animation: pop .45s 25.5s both;">Search</span></div><div class="wc" style="left: 20px; top: 150px; width: 660px; height: 120px; animation: zoomIn .6s 26.5s both;"><div style="display: grid; grid-template-columns: 40px 1fr 2.4fr 0.8fr 0.8fr; font-size: 12px; font-weight: 900; color: #0B2545; background: #E3E9F2;"><span style="padding: 6px 8px;"></span><span style="padding: 6px 8px;">Page ID</span><span style="padding: 6px 8px;">URL</span><span style="padding: 6px 8px;">Text</span><span style="padding: 6px 8px;">Files</span></div><div style="display: grid; grid-template-columns: 40px 1fr 2.4fr 0.8fr 0.8fr; font-size: 12px; color: #0B2545; align-items: center;"><span style="padding: 6px 8px;"><span style="display: inline-flex; width: 16px; height: 16px; border: 2px solid #1466F0; border-radius: 3px; background: #1466F0; color: #FFFFFF; font-size: 11px; align-items: center; justify-content: center; box-shadow: 0 0 0 3px #F04438; animation: pop .45s 28s both;">&#10003;</span></span><b style="padding: 6px 8px;">17200001</b><span class="mono" style="padding: 6px 8px; font-size: 10.5px;">es.example.com/wifi/pro/?mpactionid=16408&amp;Patel</span><b style="padding: 6px 8px; color: #2F7A22;">NEW</b><b style="padding: 6px 8px; color: #2F7A22;">NEW</b></div><div style="display: flex; justify-content: flex-end; padding: 8px 12px;"><span style="padding: 6px 16px; border-radius: 6px; background: #2F7A22; color: #FFFFFF; font-size: 12.5px; font-weight: 900; box-shadow: 0 0 0 3px #F04438; animation: pop .45s 30s both;">Update</span></div></div><div style="position: absolute; left: 20px; top: 286px; width: 660px; height: 92px; border-radius: 20px; background: #0B2545; color: #FFFFFF; display: flex; align-items: center; gap: 18px; padding: 0 30px; animation: up .7s 32s both;"><span style="font-size: 15px; font-weight: 900; line-height: 1.45;">Your last name in <b>Enter Url</b> shows only the pages you pushed.</span></div></div>
+<div class="tc2">
+<div class="eb" style="color: #2F7A22;">Find it &middot; 2 of 3</div>
+<div class="tt" style="font-size: 26px;">Search by your last name</div>
+<div class="bl" style="animation: fromR .6s 23.5s both;"><span class="bn" style="background: #E5F4DE; color: #2F7A22;">1</span><span class="bt" style="font-size: 18px;">Search Page Queue: Project Code <b>All</b>, Enter Url: your last name.</span></div>
+<div class="bl" style="animation: fromR .6s 28s both;"><span class="bn" style="background: #E5F4DE; color: #2F7A22;">2</span><span class="bt" style="font-size: 18px;">Tick the PID box.</span></div>
+<div class="bl" style="animation: fromR .6s 30s both;"><span class="bn" style="background: #E5F4DE; color: #2F7A22;">3</span><span class="bt" style="font-size: 18px;">Click <b>Update</b>.</span></div>
+</div>
+</div>
+<div class="win" style="animation: win 18s 40s both;">
+<div class="shot" style="background: #FCE3CC; display: block;"><div style="position: absolute; left: 20px; top: 20px; width: 320px; height: 196px; border-radius: 16px; background: #E5F4DE; border: 3px solid #2F7A22; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 41.5s both;"><span style="display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 999px; background: #E5F4DE; color: #2F7A22; font-size: 11.5px; font-weight: 900; align-self: flex-start;">NEW</span><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Status is New</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Copy the PID# into your note to the TAM.</span></div><div class="wc" style="left: 360px; top: 20px; width: 320px; height: 196px; animation: zoomIn .6s 43.5s both;"><div style="height: 40px; background: #0B5CAB; color: #FFFFFF; display: flex; align-items: center; gap: 10px; padding: 0 16px; font-size: 14px; font-weight: 900;"><span style="width: 24px; height: 24px; border-radius: 6px; background: #FFFFFF; color: #0B5CAB; display: flex; align-items: center; justify-content: center; font-size: 11px;">SF</span>Note to the TAM</div><div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 10px;"><span style="font-size: 14px; color: #0B2545;">PID: <b style="background: #FFF04D; padding: 0 4px; animation: pop .45s 44.5s both;">17200001</b></span><span style="font-size: 12.5px; color: #3B4F6B;">+ steps to replicate</span><span style="font-size: 12.5px; color: #3B4F6B;">+ a screenshot</span></div></div><div style="position: absolute; left: 20px; top: 236px; width: 660px; height: 140px; border-radius: 20px; background: #0B2545; color: #FFFFFF; display: flex; align-items: center; gap: 18px; padding: 0 30px; animation: up .7s 47s both;"><span style="font-size: 16px; font-weight: 900; line-height: 1.45;">The PID is how the TAM finds exactly what you pushed. No PID, no hand-off.</span></div></div>
+<div class="tc2">
+<div class="eb" style="color: #C2410C;">Find it &middot; 3 of 3</div>
+<div class="tt" style="font-size: 26px;">Copy the PID</div>
+<div class="bl" style="animation: fromR .6s 41.5s both;"><span class="bn" style="background: #FCE3CC; color: #C2410C;">1</span><span class="bt" style="font-size: 18px;">If the status is <b>New</b>, copy the PID#.</span></div>
+<div class="bl" style="animation: fromR .6s 44s both;"><span class="bn" style="background: #FCE3CC; color: #C2410C;">2</span><span class="bt" style="font-size: 18px;">Add it to your note to the TAM, with steps to replicate and a screenshot.</span></div>
+</div>
+</div>
+</div>
+</div>
+</template>
+
+<!-- ============ SCENE 5 · HAND OFF ============ -->
+<template id="scene-5">
+<div style="position: absolute; left: 0; top: 72px; width: 1280px; height: 648px;">
+<div class="sh" style="animation: up .6s .2s both;"><div class="h2">Part 5: Hand it to the TAM</div><div class="h2s">Everything they need, in one note.</div></div>
+<div class="sc" style="left: 40px; width: 592px; background: #DCE7F7; color: #1466F0; animation: up .6s 1.4s both, litRing 20s 4s both;"><div class="sr"><span class="sn" style="background: #1466F0;">1</span><span class="tg" style="background: #1466F0;">PID</span></div><div class="st">Note to the TAM</div><svg class="mk" width="28" height="28" style="animation: pop .5s 23.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="sc" style="left: 648px; width: 592px; background: #FFF1F0; color: #B42318; animation: up .6s 1.6s both, litRing 20s 24s both;"><div class="sr"><span class="sn" style="background: #B42318;">2</span><span class="tg" style="background: #B42318;">Teams</span></div><div class="st">Express: alert the TAM</div><svg class="mk" width="28" height="28" style="animation: pop .5s 43.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="panel" style="animation: up .7s 2.2s both;">
+<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: #8A99AD; animation: fadeOut .5s 3.8s forwards;">Over to the TAM.</div>
+<div class="win" style="animation: win 20s 4s both;">
+<div class="shot" style="background: #DCE7F7; display: block;"><div class="wc" style="left: 20px; top: 14px; width: 660px; height: 366px; animation: zoomIn .6s 4.5s both;"><div style="height: 40px; background: #0B5CAB; color: #FFFFFF; display: flex; align-items: center; gap: 10px; padding: 0 16px; font-size: 14px; font-weight: 900;"><span style="width: 24px; height: 24px; border-radius: 6px; background: #FFFFFF; color: #0B5CAB; display: flex; align-items: center; justify-content: center; font-size: 11px;">SF</span>Internal note &middot; To: Internal</div><div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 10px;"><span style="font-size: 13.5px; color: #0B2545; line-height: 1.55;">Hi [TAM],<br>Per the customer&rsquo;s request, please process the new content on the page below:<br><span class="mono" style="font-size: 11.5px; color: #1466F0;">https://es.example.com/wifi/pro/</span></span><span style="font-size: 14px; color: #0B2545;">PID: <b style="background: #FFF04D; padding: 0 4px; animation: pop .45s 7s both;">17200001</b></span><div class="wc" style="position: relative; left: auto; top: auto; width: auto; height: 170px; box-shadow: 0 0 0 3px #F04438; display: flex; flex-direction: column; animation: zoomIn .6s 8.5s both;"><div class="bar"><span class="dot" style="background: #F28B82;"></span><span class="dot" style="background: #F6C453;"></span><span class="dot" style="background: #8FD16F;"></span><div class="mono url" style="font-size: 11px;">https://es.example.com/wifi/pro/</div></div><div style="height: 30px; display: flex; align-items: center; gap: 16px; padding: 0 14px; border-bottom: 1px solid #DCE1E8; font-size: 11.5px; font-weight: 700; color: #0B2545;"><b style="color: #1466F0;">Example Co.</b><span>Tienda</span><span>Ofertas</span><span>Ayuda</span></div><div style="flex: 1; margin: 10px 14px; border-radius: 10px; background: linear-gradient(120deg, #E9F1FB, #DCE7F7); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 11px; font-weight: 700; color: #3B4F6B;">Wi-Fi Pro</span><b style="font-size: 20px; color: #0B2545;">Mejora tu experiencia de Wi-Fi</b><span style="font-size: 13px; color: #0B2545; padding: 4px 6px; align-self: flex-start; background: #FFF04D; box-shadow: 0 0 0 3px #F04438; animation: pop .45s 10s both;">Eliminate dead zones and get faster Wi-Fi in every room.</span><span style="align-self: flex-start; margin-top: auto; padding: 6px 14px; border-radius: 999px; background: #0B2545; color: #FFFFFF; font-size: 11.5px; font-weight: 900;">Obt&eacute;n Wi-Fi Pro</span></div></div><span style="font-size: 12.5px; color: #3B4F6B;">Steps: open the page; the block under the heading is still in English. Thanks, [Your name]</span></div></div></div>
+<div class="tc2">
+<div class="eb" style="color: #1466F0;">Hand off &middot; 1 of 2</div>
+<div class="tt" style="font-size: 26px;">Note to the TAM</div>
+<div class="bl" style="animation: fromR .6s 5.5s both;"><span class="bn" style="background: #DCE7F7; color: #1466F0;">1</span><span class="bt" style="font-size: 18px;">Steps, URLs and credentials.</span></div>
+<div class="bl" style="animation: fromR .6s 7s both;"><span class="bn" style="background: #DCE7F7; color: #1466F0;">2</span><span class="bt" style="font-size: 18px;">The PID number.</span></div>
+<div class="bl" style="animation: fromR .6s 9s both;"><span class="bn" style="background: #DCE7F7; color: #1466F0;">3</span><span class="bt" style="font-size: 18px;">A screenshot showing where the content is untranslated.</span></div>
+</div>
+</div>
+<div class="win" style="animation: win 20s 24s both;">
+<div class="shot" style="background: #FFF1F0; display: block;"><div style="position: absolute; left: 20px; top: 20px; width: 660px; display: flex; gap: 8px; align-items: center;"><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #DCE7F7; border: 3px solid #1466F0; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 25s both; position: relative; left: auto; top: auto; width: 152px; height: 150px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Teams message</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">to the TAM</span></div><span style="font-size: 18px; color: #94A3B8;">&rarr;</span><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #FCE3CC; border: 3px solid #C2410C; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 26.6s both; position: relative; left: auto; top: auto; width: 152px; height: 150px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">No answer?</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Message again</span></div><span style="font-size: 18px; color: #94A3B8;">&rarr;</span><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #FFF1F0; border: 3px solid #B42318; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 28.2s both; position: relative; left: auto; top: auto; width: 152px; height: 150px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Still nothing?</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Involve their manager or director</span></div><span style="font-size: 18px; color: #94A3B8;">&rarr;</span><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #E5F4DE; border: 3px solid #2F7A22; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 29.8s both; position: relative; left: auto; top: auto; width: 152px; height: 150px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Acknowledged</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Now you can stop</span></div></div><div style="position: absolute; left: 20px; top: 196px; width: 660px; height: 110px; border-radius: 20px; background: #8A2C0D; color: #FFFFFF; display: flex; align-items: center; gap: 18px; padding: 0 30px; animation: up .7s 32s both;"><svg width="34" height="34" style="flex-shrink: 0; color: #FFD27A;"><use href="#dc-warn"></use></svg><span style="font-size: 17px; font-weight: 900; line-height: 1.4;">Express? Alert the TAM on Teams until they acknowledge. Never assume they&rsquo;ll see it.</span></div><span style="position: absolute; left: 20px; top: 326px; width: 660px; font-size: 13px; font-weight: 700; color: #3B4F6B; line-height: 1.45; animation: fadeIn .4s 35s both;">No response? Asking their manager or director for help is the right move. It makes sure the case gets attention.</span></div>
+<div class="tc2">
+<div class="eb" style="color: #B42318;">Hand off &middot; 2 of 2</div>
+<div class="tt" style="font-size: 26px;">Express: alert the TAM</div>
+<div class="bl" style="animation: fromR .6s 25.5s both;"><span class="bn" style="background: #FFF1F0; color: #B42318;">1</span><span class="bt" style="font-size: 18px;">The note alone isn&rsquo;t enough. Message the TAM on Teams.</span></div>
+<div class="bl" style="animation: fromR .6s 28s both;"><span class="bn" style="background: #FFF1F0; color: #B42318;">2</span><span class="bt" style="font-size: 18px;">Keep following up until you get an acknowledgment.</span></div>
+<div class="bl" style="animation: fromR .6s 32s both;"><span class="bn" style="background: #FFF1F0; color: #B42318;">3</span><span class="bt" style="font-size: 18px;">No response? Involve their manager or director.</span></div>
+<div class="bl" style="animation: fromR .6s 35s both;"><span class="bn" style="background: #FFF1F0; color: #B42318;">4</span><span class="bt" style="font-size: 18px;">Never assume they&rsquo;ll see it.</span></div>
+</div>
+</div>
+</div>
+</div>
+</template>
+
+<!-- ============ SCENE 6 · WRAP UP ============ -->
+<template id="scene-6">
+<div style="position: absolute; left: 0; top: 72px; width: 1280px; height: 648px;">
+<div class="sh" style="animation: up .6s .2s both;"><div class="h2">Part 6: After the TAM</div><div class="h2s">Validate, communicate, close.</div></div>
+<div class="sc" style="left: 40px; width: 592px; background: #E5F4DE; color: #2F7A22; animation: up .6s 1.4s both, litRing 20s 4s both;"><div class="sr"><span class="sn" style="background: #2F7A22;">1</span><span class="tg" style="background: #2F7A22;">Close</span></div><div class="st">Translated</div><svg class="mk" width="28" height="28" style="animation: pop .5s 23.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="sc" style="left: 648px; width: 592px; background: #FCE3CC; color: #C2410C; animation: up .6s 1.6s both, litRing 20s 24s both;"><div class="sr"><span class="sn" style="background: #C2410C;">2</span><span class="tg" style="background: #C2410C;">PE</span></div><div class="st">Not showing yet</div><svg class="mk" width="28" height="28" style="animation: pop .5s 43.4s both;"><use href="#dc-check"></use></svg></div>
+<div class="panel" style="animation: up .7s 2.2s both;">
+<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: #8A99AD; animation: fadeOut .5s 3.8s forwards;">Closing the loop.</div>
+<div class="win" style="animation: win 20s 4s both;">
+<div class="shot" style="background: #E5F4DE; display: block;"><div style="position: absolute; left: 20px; top: 14px; width: 660px; display: flex; gap: 10px; align-items: center;"><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #DCE7F7; border: 3px solid #1466F0; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 5s both; position: relative; left: auto; top: auto; width: 200px; height: 130px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">The TAM</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Assigns a linguist</span></div><span style="font-size: 20px; color: #94A3B8;">&rarr;</span><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #E5F4DE; border: 3px solid #2F7A22; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 6.6s both; position: relative; left: auto; top: auto; width: 200px; height: 130px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Translated</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Content is ready</span></div><span style="font-size: 20px; color: #94A3B8;">&rarr;</span><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #E3E9F2; border: 3px solid #0B2545; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 8.2s both; position: relative; left: auto; top: auto; width: 200px; height: 130px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Close it</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">TAM updates the customer, or sends it back to you</span></div></div><div class="wc" style="left: 20px; top: 160px; width: 660px; height: 220px; animation: zoomIn .6s 10s both;"><div style="height: 40px; background: #0B5CAB; color: #FFFFFF; display: flex; align-items: center; gap: 10px; padding: 0 16px; font-size: 14px; font-weight: 900;"><span style="width: 24px; height: 24px; border-radius: 6px; background: #FFFFFF; color: #0B5CAB; display: flex; align-items: center; justify-content: center; font-size: 11px;">SF</span>Customer-visible note &middot; To: All</div><div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 10px;"><span style="font-size: 13.5px; color: #0B2545; line-height: 1.55; animation: fadeIn .5s 11s both;">Hello [Name],<br>We have reviewed this case and found that the page you requested has now been translated. A screenshot is provided below, and we are setting the case to complete. If we can be of any further assistance, please don&rsquo;t hesitate to contact us.</span><span style="font-size: 12px; font-weight: 900; color: #2F7A22; animation: pop .45s 13s both;">&#10003; Screenshot of the translated page attached</span></div></div></div>
+<div class="tc2">
+<div class="eb" style="color: #2F7A22;">Wrap up &middot; 1 of 2</div>
+<div class="tt" style="font-size: 26px;">When it&rsquo;s translated</div>
+<div class="bl" style="animation: fromR .6s 5.5s both;"><span class="bn" style="background: #DCE7F7; color: #1466F0;">1</span><span class="bt" style="font-size: 18px;">The TAM assigns it to a translation professional.</span></div>
+<div class="bl" style="animation: fromR .6s 8s both;"><span class="bn" style="background: #E5F4DE; color: #2F7A22;">2</span><span class="bt" style="font-size: 18px;">The TAM updates the customer and closes the case&hellip;</span></div>
+<div class="bl" style="animation: fromR .6s 11s both;"><span class="bn" style="background: #E3E9F2; color: #0B2545;">3</span><span class="bt" style="font-size: 18px;">&hellip;or sends it back to you to validate, communicate and close.</span></div>
+</div>
+</div>
+<div class="win" style="animation: win 20s 24s both;">
+<div class="shot" style="background: #FCE3CC; display: block;"><div style="position: absolute; left: 20px; top: 20px; width: 660px; display: flex; gap: 10px; align-items: center;"><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #FCE3CC; border: 3px solid #C2410C; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 25s both; position: relative; left: auto; top: auto; width: 200px; height: 150px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">Still not showing?</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Translated, but not on the live site</span></div><span style="font-size: 20px; color: #94A3B8;">&rarr;</span><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #E3E9F2; border: 3px solid #0B2545; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 26.6s both; position: relative; left: auto; top: auto; width: 200px; height: 150px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">TAM &rarr; PE</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">The PE activates it</span></div><span style="font-size: 20px; color: #94A3B8;">&rarr;</span><div style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 16px; background: #E5F4DE; border: 3px solid #2F7A22; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; animation: pop .55s 28.2s both; position: relative; left: auto; top: auto; width: 200px; height: 150px; align-items: center; text-align: center;"><span class="disp" style="font-size: 19px; font-weight: 700; color: #0B2545; line-height: 1.25;">You validate</span><span style="font-size: 15px; font-weight: 700; color: #3B4F6B; line-height: 1.35;">Check the screenshots, notify, close</span></div></div><div style="position: absolute; left: 20px; top: 200px; width: 660px; height: 176px; border-radius: 20px; background: #0B2545; color: #FFFFFF; display: flex; align-items: center; gap: 18px; padding: 0 30px; animation: up .7s 31s both;"><svg width="34" height="34" style="flex-shrink: 0; color: #8FD16F;"><use href="#dc-check"></use></svg><span style="display: flex; flex-direction: column; gap: 8px;"><span style="font-size: 17px; font-weight: 900;">The PE returns valid screenshots.</span><span style="font-size: 15px; font-weight: 700; opacity: .9; line-height: 1.45;">Check the live page yourself, notify the customer with the screenshot, and close the case.</span></span></div></div>
+<div class="tc2">
+<div class="eb" style="color: #C2410C;">Wrap up &middot; 2 of 2</div>
+<div class="tt" style="font-size: 26px;">Translated, but not showing</div>
+<div class="bl" style="animation: fromR .6s 25.5s both;"><span class="bn" style="background: #FCE3CC; color: #C2410C;">1</span><span class="bt" style="font-size: 18px;">The TAM forwards it to a PE to activate it on the live site.</span></div>
+<div class="bl" style="animation: fromR .6s 28s both;"><span class="bn" style="background: #E3E9F2; color: #0B2545;">2</span><span class="bt" style="font-size: 18px;">The PE returns valid screenshots.</span></div>
+<div class="bl" style="animation: fromR .6s 31s both;"><span class="bn" style="background: #E5F4DE; color: #2F7A22;">3</span><span class="bt" style="font-size: 18px;">You validate, notify the customer, and close.</span></div>
+</div>
+</div>
+</div>
+</div>
+</template>
+
+<!-- ============ SCENE 7 · PRACTICE ============ -->
+<template id="scene-7">
+<div style="position: absolute; left: 0; top: 72px; width: 1280px; height: 648px;">
+<div class="sh" style="animation: up .6s .2s both;"><div class="h2">Part 7: Practice. What would you do?</div><div class="h2s">Think of your answer before it appears.</div></div>
+<div style="position: absolute; left: 160px; top: 80px; width: 960px; height: 520px; animation: win 10s 4s both;"><div class="wc" style="left: 0; top: 0; width: 960px; height: 190px; padding: 26px 32px; display: flex; flex-direction: column; gap: 12px;"><span class="lab">Case 1</span><span class="disp" style="font-size: 26px; font-weight: 600; color: #0B2545; line-height: 1.35;">&ldquo;Please translate the missing content from this page,&rdquo; plus a URL. First step?</span></div><div style="position: absolute; left: 0; top: 220px; width: 960px; min-height: 120px; border-radius: 18px; background: #DCE7F7; border: 3px solid #1466F0; padding: 22px 28px; display: flex; align-items: center; gap: 18px; animation: pop .5s 9s both;"><svg width="40" height="40" style="flex-shrink: 0;"><use href="#dc-check"></use></svg><span style="font-size: 23px; font-weight: 900; color: #0B2545; line-height: 1.4;">Confirm the URL, screenshots and instructions are clear, then acknowledge the customer.</span></div></div>
+<div style="position: absolute; left: 160px; top: 80px; width: 960px; height: 520px; animation: win 10s 14s both;"><div class="wc" style="left: 0; top: 0; width: 960px; height: 190px; padding: 26px 32px; display: flex; flex-direction: column; gap: 12px;"><span class="lab">Case 2</span><span class="disp" style="font-size: 26px; font-weight: 600; color: #0B2545; line-height: 1.35;">It&rsquo;s a Standard case. What do you set while waiting on the TAM?</span></div><div style="position: absolute; left: 0; top: 220px; width: 960px; min-height: 120px; border-radius: 18px; background: #FCE3CC; border: 3px solid #C2410C; padding: 22px 28px; display: flex; align-items: center; gap: 18px; animation: pop .5s 19s both;"><svg width="40" height="40" style="flex-shrink: 0;"><use href="#dc-check"></use></svg><span style="font-size: 23px; font-weight: 900; color: #0B2545; line-height: 1.4;">Status Pending, due date next week. (Express or Critical: next day.)</span></div></div>
+<div style="position: absolute; left: 160px; top: 80px; width: 960px; height: 520px; animation: win 10s 24s both;"><div class="wc" style="left: 0; top: 0; width: 960px; height: 190px; padding: 26px 32px; display: flex; flex-direction: column; gap: 12px;"><span class="lab">Case 3</span><span class="disp" style="font-size: 26px; font-weight: 600; color: #0B2545; line-height: 1.35;">The missing text is on a public page.</span></div><div style="position: absolute; left: 0; top: 220px; width: 960px; min-height: 120px; border-radius: 18px; background: #DCE7F7; border: 3px solid #1466F0; padding: 22px 28px; display: flex; align-items: center; gap: 18px; animation: pop .5s 29s both;"><svg width="40" height="40" style="flex-shrink: 0;"><use href="#dc-check"></use></svg><span style="font-size: 23px; font-weight: 900; color: #0B2545; line-height: 1.4;">Add ?mpactionid=16408 plus your last name to the URL, and load the page.</span></div></div>
+<div style="position: absolute; left: 160px; top: 80px; width: 960px; height: 520px; animation: win 10s 34s both;"><div class="wc" style="left: 0; top: 0; width: 960px; height: 190px; padding: 26px 32px; display: flex; flex-direction: column; gap: 12px;"><span class="lab">Case 4</span><span class="disp" style="font-size: 26px; font-weight: 600; color: #0B2545; line-height: 1.35;">The content only shows after logging in and three clicks.</span></div><div style="position: absolute; left: 0; top: 220px; width: 960px; min-height: 120px; border-radius: 18px; background: #E5F4DE; border: 3px solid #2F7A22; padding: 22px 28px; display: flex; align-items: center; gap: 18px; animation: pop .5s 39s both;"><svg width="40" height="40" style="flex-shrink: 0;"><use href="#dc-check"></use></svg><span style="font-size: 23px; font-weight: 900; color: #0B2545; line-height: 1.4;">Use Charles with the Rewrite, and go through the flow like the customer.</span></div></div>
+<div style="position: absolute; left: 160px; top: 80px; width: 960px; height: 520px; animation: win 10s 44s both;"><div class="wc" style="left: 0; top: 0; width: 960px; height: 190px; padding: 26px 32px; display: flex; flex-direction: column; gap: 12px;"><span class="lab">Case 5</span><span class="disp" style="font-size: 26px; font-weight: 600; color: #0B2545; line-height: 1.35;">Your PID shows NEW after you click Update.</span></div><div style="position: absolute; left: 0; top: 220px; width: 960px; min-height: 120px; border-radius: 18px; background: #E3E9F2; border: 3px solid #0B2545; padding: 22px 28px; display: flex; align-items: center; gap: 18px; animation: pop .5s 49s both;"><svg width="40" height="40" style="flex-shrink: 0;"><use href="#dc-check"></use></svg><span style="font-size: 23px; font-weight: 900; color: #0B2545; line-height: 1.4;">Copy the PID into the case, and post to the TAM with steps, URLs, credentials and a screenshot.</span></div></div>
+<div style="position: absolute; left: 160px; top: 80px; width: 960px; height: 520px; animation: win 10s 54s both;"><div class="wc" style="left: 0; top: 0; width: 960px; height: 190px; padding: 26px 32px; display: flex; flex-direction: column; gap: 12px;"><span class="lab">Case 6</span><span class="disp" style="font-size: 26px; font-weight: 600; color: #0B2545; line-height: 1.35;">It&rsquo;s Express, and the TAM hasn&rsquo;t replied on Teams.</span></div><div style="position: absolute; left: 0; top: 220px; width: 960px; min-height: 120px; border-radius: 18px; background: #FFF1F0; border: 3px solid #B42318; padding: 22px 28px; display: flex; align-items: center; gap: 18px; animation: pop .5s 59s both;"><svg width="40" height="40" style="flex-shrink: 0;"><use href="#dc-check"></use></svg><span style="font-size: 23px; font-weight: 900; color: #0B2545; line-height: 1.4;">Keep following up. Still nothing? Involve their manager or director. Never assume.</span></div></div>
+<div style="position: absolute; left: 40px; top: 66px; width: 1200px; height: 566px; border-radius: 22px; background: #DCE7F7; padding: 22px 26px; display: flex; flex-direction: column; gap: 10px; animation: pop .6s 66s both;"><span class="disp" style="font-size: 26px; font-weight: 700; color: #0B2545; margin-bottom: 4px;">Recap: Translation cases</span><div class="row" style="height: 64px; font-size: 17px; font-weight: 700; animation: up .5s 67.5s both;"><span class="sn" style="background: #1466F0;">1</span><span><b>Spot it:</b> Type = Translation; new content not translated yet</span></div><div class="row" style="height: 64px; font-size: 17px; font-weight: 700; animation: up .5s 69.7s both;"><span class="sn" style="background: #1466F0;">2</span><span><b>Set up:</b> confirm basics, acknowledge, Pending; due next week (Express next day)</span></div><div class="row" style="height: 64px; font-size: 17px; font-weight: 700; animation: up .5s 71.9s both;"><span class="sn" style="background: #1466F0;">3</span><span><b>Push:</b> ?mpactionid=16408 + your last name, Charles, or schedule the URL</span></div><div class="row" style="height: 64px; font-size: 17px; font-weight: 700; animation: up .5s 74.1s both;"><span class="sn" style="background: #1466F0;">4</span><span><b>Find:</b> TPM &rsaquo; customer &rsaquo; WC &rsaquo; search your last name &rsaquo; tick PID &rsaquo; Update</span></div><div class="row" style="height: 64px; font-size: 17px; font-weight: 700; animation: up .5s 76.3s both;"><span class="sn" style="background: #1466F0;">5</span><span><b>Hand off:</b> PID, steps, URLs, credentials, screenshot to the TAM; Express: Teams them</span></div><div class="row" style="height: 64px; font-size: 17px; font-weight: 700; animation: up .5s 78.5s both;"><span class="sn" style="background: #1466F0;">6</span><span><b>Wrap up:</b> TAM closes, or you validate, notify and close; not showing &rarr; PE</span></div><div style="margin-top: auto; padding: 14px 20px; border-radius: 14px; background: #0B2545; color: #FFFFFF; font-size: 20px; font-weight: 900; animation: pop .5s 82s both;">Push it, PID it, hand it off. Thanks for watching!</div></div>
+</div>
+</template>
+
+<div id="sceneHost" style="position: absolute; inset: 0;"></div>
+
+<!-- ============ COVER ============ -->
+<div id="cover">
+<div style="position: absolute; inset: 0; background: #0B2545; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; text-align: center; color: #FFFFFF;">
+<div style="font-size: 16px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; color: #8FD16F;">MotionPoint Support &middot; New Agent Training</div>
+<h1 class="disp" style="margin: 0; font-size: 64px; line-height: 1.05; font-weight: 700;">Translation Cases</h1>
+<p style="margin: 0; font-size: 22px; color: #C9D6E8; max-width: 800px;">What a Translation case looks like, how to push the content, find the PID, and hand it to the TAM. About 7 minutes, with background music.</p>
+<button type="button" id="coverPlay" style="margin-top: 14px; height: 72px; padding: 0 40px; border-radius: 36px; border: none; background: #1466F0; color: #FFFFFF; font-family: 'Lexend', sans-serif; font-size: 26px; font-weight: 600; display: flex; align-items: center; gap: 14px; cursor: pointer; box-shadow: 0 16px 40px rgba(20,102,240,.45);">
+<svg width="26" height="26" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z" fill="#FFFFFF"></path></svg>Play</button>
+</div>
+</div>
+
+</div>
+
+<!-- ===================== SUBTITLES ===================== -->
+<div style="height: 70px; flex-shrink: 0; background: #0B1626; display: flex; align-items: center; justify-content: center; padding: 0 48px; position: relative; overflow: hidden;">
+<div id="subs" style="display: contents;"></div>
+</div>
+
+<!-- ===================== CONTROLS ===================== -->
+<div style="height: 80px; flex-shrink: 0; background: #0E1B2E; display: flex; flex-direction: column;">
+<div style="height: 6px; background: #1D2E48;"><div id="prog" style="height: 6px; width: 0%; background: #5DB645;"></div></div>
+<div style="flex-grow: 1; display: flex; align-items: center; gap: 10px; padding: 0 20px;">
+<button type="button" class="ctl main" id="playBtn" aria-label="Play">
+<span id="icoPause" style="display: contents;" hidden><svg width="18" height="18" viewBox="0 0 24 24"><rect x="6" y="4.5" width="4" height="15" rx="1" fill="#FFFFFF"></rect><rect x="14" y="4.5" width="4" height="15" rx="1" fill="#FFFFFF"></rect></svg></span>
+<span id="icoPlay" style="display: contents;"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z" fill="#FFFFFF"></path></svg></span>
+<span id="playLabel">Play</span>
+</button>
+<button type="button" class="ctl" id="replayBtn" aria-label="Replay from start">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E6EEF8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"></path><path d="M3 4v5h5"></path></svg>
+</button>
+<button type="button" class="ctl" id="back10Btn" aria-label="Back 10 seconds" title="Back 10 seconds (Left arrow)">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E6EEF8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-5-5 5-5"></path><path d="M18 17l-5-5 5-5"></path></svg>
+<span>10s</span>
+</button>
+<button type="button" class="ctl" id="fwd10Btn" aria-label="Forward 10 seconds" title="Forward 10 seconds (Right arrow)">
+<span>10s</span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E6EEF8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 17l5-5-5-5"></path><path d="M6 17l5-5-5-5"></path></svg>
+</button>
+<button type="button" class="ctl" id="musicBtn" aria-label="Music on" aria-pressed="true">
+<span id="icoMusicOn" style="display: contents;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8FD16F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg></span>
+<span id="icoMusicOff" style="display: contents;" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A9B8CC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle><path d="M3 3l18 18"></path></svg></span>
+<span id="musicLabel" style="display:none">Music on</span>
+</button>
+<button type="button" class="ctl" id="subsBtn" aria-label="Hide captions" aria-pressed="true">
+<svg width="22" height="18" viewBox="0 0 26 20" fill="none" id="subsIcon" stroke="#8FD16F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1.5" y="1.5" width="23" height="17" rx="3"></rect><path d="M11 8.2a3 3 0 1 0 0 3.6"></path><path d="M19 8.2a3 3 0 1 0 0 3.6"></path></svg>
+</button>
+<button type="button" class="ctl" id="prevBtn" aria-label="Previous scene">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E6EEF8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+</button>
+<button type="button" class="ctl" id="nextBtn" aria-label="Next scene">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E6EEF8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
+</button>
+<div style="width: 1px; height: 30px; background: #2A3E5C; margin: 0 4px;"></div>
+<div style="display: flex; gap: 4px; flex-grow: 1; overflow: hidden;">
+<span id="chapters" style="display: contents;"></span>
+</div>
+<div style="font-size: 14px; font-weight: 700; color: #A9B8CC; white-space: nowrap; font-variant-numeric: tabular-nums;" id="timeLabel">0:00</div>
+</div>
+</div>
+
+
+</div>
+</div>
+<script>
+const STEP_HTML = "<div style=\"height: 52px; padding: 0 18px 0 6px; border-radius: 26px; background: #0B2545; color: #FFFFFF; display: flex; align-items: center; gap: 10px; box-shadow: 0 6px 16px rgba(11,37,69,.22); animation: pop 0.78s ease both;\">\n<span class=\"disp\" style=\"width: 40px; height: 40px; border-radius: 20px; background: #5DB645; color: #0B2545; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700;\">{{st.n}}</span>\n<span style=\"font-size: 15px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase;\">Part {{st.n}} of 7</span>\n</div>";
+const SUB_OPEN = "<div style=\"position: absolute; left: 48px; right: 48px; top: 0; height: 70px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 22px; line-height: 1.3; font-weight: 700; color: #F4F7FB; animation: up 0.7s ease both;\">";
+function fit(){ const s = Math.min(window.innerWidth / 1280, window.innerHeight / 870); document.getElementById('fit').style.transform = 'scale(' + s + ')'; }
+window.addEventListener('resize', fit); fit();
+class Player {
+  constructor() {
+    this.state = { scene: 0, el: 0, playing: false, started: false, ended: false, music: true, subsOn: true };
+    this.ctx = null;
+  }
+  durs() { return [26000, 58000, 58000, 64000, 58000, 44000, 44000, 90000]; }
+  subLines() {
+    return [[[0, "Welcome! This video covers Translation cases."], [5000, "A customer sees new or updated content on their translated site that isn't translated yet, and reports it in a case."], [9000, "We have a one business-day SLA to auto-crawl, detect, and queue new content. But many customers don't want to wait."], [13000, "You push the content. The TAM assigns a linguist. If needed, a PE activates it. And you validate and close."], [19000, "Push it, find the PID, and hand it to the TAM with everything they need."]],
+      [[0, "Part 1: spot a Translation case."], [5000, "In the case's Details tab, the Type field says Translation."], [8000, "It means new content on the translated site isn't translated yet."], [23000, "The customer sends a URL on the translated site, and tells you what's missing."], [27000, "Here, the page is in Spanish, but one block is still in English."], [41000, "Why does this happen? New content gets added on the origin site."], [45000, "Our system auto-crawls, detects, and queues it within one business day. Many customers don't want to wait, so they open a case."], [51000, "Your job is to speed it up: push the content now, so it's queued today."]],
+      [[0, "Part 2: confirm and acknowledge."], [5000, "Confirm the basics first: the URLs work, the screenshots show what's missing, and the instructions are clear."], [9000, "If it's behind a login, you'll need credentials."], [12000, "If something's unclear or missing, ask the customer before you push anything."], [23000, "Then acknowledge the customer with a short, friendly, customer-visible note."], [27000, "Thank them, and let them know the team will review it and follow up if any questions arise."], [41000, "While you wait on the TAM, set the case to Pending, and update the due date."], [45000, "Standard cases: next week. Express or Critical: next day."]],
+      [[0, "Part 3: push the content into the queue."], [5000, "From the browser: add question mark, mpactionid equals 16408, plus your last name, to the page URL."], [10000, "Load the page, and go through any steps to show the missing content."], [14000, "Remember: this only queues the content for translation."], [25000, "If the content is behind a login, or several steps into a flow, use Charles, the proxy debugging tool."], [30000, "Its Rewrite adds mpactionid 16408 and your last name to every request, so the content gets queued from where it really comes from."], [36000, "Go through the flow just like the customer. The Charles video covers the setup."], [45000, "You can also schedule the URL in ControlCenter."], [50000, "Whichever way you use, pushing doesn't translate anything. It only puts the content in the queue."]],
+      [[0, "Part 4: find the PID in ControlCenter."], [5000, "Open Translation Project Manager, and search the customer account."], [10000, "Then click WC on the card for the right language."], [23000, "In Search Page Queue, set Project Code to All, and type your last name in Enter Url. Then search."], [28000, "You'll see only the pages you pushed. Tick the PID box, and click Update."], [33000, "Your last name is the marker that keeps your pushes separate."], [41000, "If the status is New, copy the PID number."], [45000, "Add it to your detailed note to the TAM, with steps to replicate and a screenshot. The PID is how the TAM finds exactly what you pushed."]],
+      [[0, "Part 5: hand it to the TAM."], [5000, "Add a note for the TAM with the steps, the URLs, and credentials if needed."], [8000, "Include the PID number."], [10000, "And a screenshot showing where the content displays untranslated."], [25000, "If the case is Express, the note alone isn't enough. Message the TAM on Teams right away."], [29000, "No answer? Message again. Keep following up until you get an acknowledgment."], [33000, "Still nothing? Involve their manager or director. Asking for help makes sure the case gets attention."], [37000, "Never assume they'll see it on their own."]],
+      [[0, "Part 6: after the TAM."], [5000, "The TAM assigns the content to a translation professional."], [9000, "When it's ready, the TAM either updates the customer and closes the case..."], [12000, "or sends it back to you, to validate, communicate, and close."], [25000, "Sometimes the content was translated, but still isn't showing on the live site."], [29000, "Then the TAM forwards it to a PE, who activates it, and returns valid screenshots."], [33000, "You validate the live page, notify the customer with the screenshot, and close the case."]],
+      [[0, "Part 7: practice. What would you do?"], [4000, "Please translate the missing content from this page, plus a URL. First step?"], [9000, "Confirm the URL, screenshots, and instructions are clear, then acknowledge the customer."], [14000, "It's a Standard case. What do you set while waiting on the TAM?"], [19000, "Status Pending, due date next week. Express or Critical: next day."], [24000, "The missing text is on a public page."], [29000, "Add mpactionid 16408 plus your last name to the URL, and load the page."], [34000, "The content only shows after logging in and three clicks."], [39000, "Use Charles with the Rewrite, and go through the flow like the customer."], [44000, "Your PID shows NEW after you click Update."], [49000, "Copy the PID into the case, and post to the TAM with steps, URLs, credentials, and a screenshot."], [54000, "It's Express, and the TAM hasn't replied on Teams."], [59000, "Keep following up. Still nothing? Involve their manager or director. Never assume."], [66000, "Quick recap."], [82000, "Push it, PID it, hand it off. Thanks for watching!"]]];
+  }
+  labels() { return ["Intro", "Spot it", "Set up", "Push it", "Find PID", "Hand off", "Wrap up", "Practice"]; }
+
+  /* ---------- original background jazz, synthesized live ---------- */
+  bars() {
+    // [bass walk (MIDI), chord voicing (MIDI)] — ii-V-I in F with turnarounds, 80 bpm swing
+    return [
+      [[43, 46, 50, 47], [58, 62, 65, 69]], // Gm9
+      [[48, 46, 43, 40], [58, 62, 64, 69]], // C13
+      [[41, 45, 48, 49], [57, 60, 64, 67]], // Fmaj9
+      [[50, 48, 45, 44], [54, 60, 64, 69]], // D9
+      [[43, 46, 50, 47], [58, 62, 65, 69]], // Gm9
+      [[48, 46, 43, 40], [58, 62, 64, 69]], // C13
+      [[45, 48, 52, 51], [60, 64, 67, 71]], // Am9
+      [[50, 48, 45, 44], [54, 60, 64, 69]]  // D9
+    ];
+  }
+  hz(m) { return 440 * Math.pow(2, (m - 69) / 12); }
+  initAudio() {
+    if (this.ctx) return true;
+    try {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return false;
+      const ctx = new AC();
+      const master = ctx.createGain();
+      master.gain.value = 0;
+      master.connect(ctx.destination);
+      const len = Math.floor(ctx.sampleRate * 1.0);
+      const noise = ctx.createBuffer(1, len, ctx.sampleRate);
+      const data = noise.getChannelData(0);
+      for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+      this.ctx = ctx; this.master = master; this.noise = noise;
+      this.beat = 0; this.nextT = 0;
+      return true;
+    } catch (e) { return false; }
+  }
+  pianoNote(m, t, vel, dur) {
+    const c = this.ctx;
+    const f = this.hz(m);
+    const lp = c.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.setValueAtTime(2600, t); lp.frequency.exponentialRampToValueAtTime(900, t + dur);
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vel, t + 0.006);
+    g.gain.exponentialRampToValueAtTime(vel * 0.3, t + 0.4);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    lp.connect(g); g.connect(this.master);
+    [[1, 1], [2, 0.28], [3, 0.08]].forEach((h) => {
+      const o = c.createOscillator(); o.type = 'sine'; o.frequency.value = f * h[0];
+      const hg = c.createGain(); hg.gain.value = h[1];
+      o.connect(hg); hg.connect(lp);
+      o.start(t); o.stop(t + dur + 0.05);
+    });
+  }
+  pianoChord(notes, t, vel, dur) {
+    notes.forEach((m, i) => this.pianoNote(m, t + i * 0.018, vel, dur));
+  }
+  tap(t, vol, dur, freq) {
+    const c = this.ctx;
+    const s = c.createBufferSource(); s.buffer = this.noise;
+    const f = c.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = freq;
+    const g = c.createGain();
+    g.gain.setValueAtTime(vol, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    s.connect(f); f.connect(g); g.connect(this.master);
+    s.start(t); s.stop(t + dur + 0.02);
+  }
+  scheduleBeat(i, t) {
+    const spb = 60 / 80;
+    const sw = spb * 2 / 3;
+    const barIx = Math.floor(i / 4) % 8;
+    const bar = this.bars()[barIx];
+    const b = i % 4;
+    this.tap(t, 0.014, 0.25, 7500);
+    if (b === 1 || b === 3) {
+      this.tap(t + sw, 0.01, 0.18, 7500);
+      this.tap(t, 0.012, 0.05, 9500);
+    }
+    if (b === 0) {
+      this.pianoNote(bar[0][0] + 12, t, 0.05, 2.4);
+      this.pianoChord(bar[1], t + 0.03, 0.028, 2.2);
+    }
+    const v = Math.floor(i / 4) % 2;
+    if (b === 2 && v === 0) this.pianoChord(bar[1], t + sw, 0.018, 1.2);
+    if (b === 1 && v === 1) this.pianoChord(bar[1], t + sw, 0.018, 1.2);
+  }
+  schedule() {
+    const c = this.ctx;
+    if (!c || c.state !== 'running' || !this.musicLive) return;
+    if (this.nextT < c.currentTime) this.nextT = c.currentTime + 0.05;
+    while (this.nextT < c.currentTime + 0.3) {
+      this.scheduleBeat(this.beat, this.nextT);
+      this.beat = (this.beat + 1) % 32;
+      this.nextT += 60 / 80;
+    }
+  }
+  musicStart() {
+    if (!this.state.music || !this.initAudio()) return;
+    const c = this.ctx;
+    try { c.resume(); } catch (e) {}
+    if (!this.musicLive) {
+      this.musicLive = true;
+      this.beat = 0;
+      this.nextT = c.currentTime + 0.1;
+      this.master.gain.cancelScheduledValues(c.currentTime);
+      this.master.gain.setValueAtTime(0.0001, c.currentTime);
+      this.master.gain.exponentialRampToValueAtTime(0.55, c.currentTime + 1.5);
+    }
+  }
+  musicStop(fade) {
+    if (!this.ctx) return;
+    const c = this.ctx;
+    this.musicLive = false;
+    const now = c.currentTime;
+    this.master.gain.cancelScheduledValues(now);
+    this.master.gain.setValueAtTime(Math.max(this.master.gain.value, 0.0001), now);
+    this.master.gain.exponentialRampToValueAtTime(0.0001, now + (fade || 0.3));
+  }
+  musicPause() { if (this.ctx) { try { this.ctx.suspend(); } catch (e) {} } }
+  musicResume() { if (this.ctx && this.state.music) { try { this.ctx.resume(); } catch (e) {} } }
+
+  componentDidMount() {
+    this.iv = setInterval(() => this.tick(), 200);
+    this.au = setInterval(() => this.schedule(), 60);
+  }
+  componentWillUnmount() {
+    clearInterval(this.iv); clearInterval(this.au); clearTimeout(this.to);
+    if (this.ctx) { try { this.ctx.close(); } catch (e) {} }
+  }
+  tick() {
+    const s = this.state;
+    if (!s.playing || s.scene < 0) return;
+    const d = this.durs();
+    const el = s.el + 200;
+    if (el >= d[s.scene]) {
+      if (s.scene < d.length - 1) this.setState({ scene: s.scene + 1, el: 0 });
+      else { this.setState({ el: d[s.scene], playing: false, ended: true }); this.musicStop(3); }
+    } else {
+      this.setState({ el: el });
+    }
+  }
+  go(i, off) {
+    off = off || 0;
+    clearTimeout(this.to);
+    this.musicStart();
+    this.musicResume();
+    this.setState({ scene: -1, el: 0 });
+    this.to = setTimeout(() => {
+      this.setState({ scene: i, el: off, started: true, playing: true, ended: false });
+      if (off) setTimeout(() => this.sync(off), 60);
+    }, 40);
+  }
+  sync(off) {
+    try {
+      const st = document.querySelector('.stage');
+      if (!st || !st.getAnimations) return;
+      st.getAnimations({ subtree: true }).forEach((a) => { try { a.currentTime = off; } catch (e) {} });
+    } catch (e) {}
+  }
+  jump(delta) {
+    const d = this.durs();
+    const s = this.state;
+    const cur = s.scene < 0 ? 0 : s.scene;
+    let t = 0;
+    for (let i = 0; i < cur; i++) t += d[i];
+    t += (s.scene < 0 || !s.started) ? 0 : s.el;
+    const total = d.reduce((a, b) => a + b, 0);
+    t = Math.max(0, Math.min(t + delta, total - 500));
+    let i = 0;
+    while (i < d.length - 1 && t >= d[i]) { t -= d[i]; i++; }
+    this.go(i, t);
+  }
+  fmt(ms) {
+    const t = Math.floor(ms / 1000);
+    const m = Math.floor(t / 60);
+    const sec = t % 60;
+    return m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+  renderVals() {
+    const s = this.state;
+    const d = this.durs();
+    const total = d.reduce((a, b) => a + b, 0);
+    const cur = s.scene < 0 ? 0 : s.scene;
+    let done = 0;
+    for (let i = 0; i < cur; i++) done += d[i];
+    done += s.scene < 0 ? 0 : s.el;
+    const vis = s.started ? s.scene : -2;
+    const chapters = this.labels().map((label, i) => ({
+      label: label,
+      cls: s.started && i === cur ? 'on' : (s.started && i < cur ? 'done' : ''),
+      go: () => this.go(i)
+    }));
+    return {
+      s0: vis === 0, s1: vis === 1, s2: vis === 2, s3: vis === 3, s4: vis === 4, s5: vis === 5, s6: vis === 6, s7: vis === 7,
+      showCover: !s.started,
+      pauseCls: s.playing ? '' : 'paused',
+      isPlaying: s.playing,
+      notPlaying: !s.playing,
+      playLabel: s.playing ? 'Pause' : (s.ended ? 'Replay' : 'Play'),
+      progressW: (Math.min(1, done / total) * 100).toFixed(2) + '%',
+      timeLabel: this.fmt(done) + ' / ' + this.fmt(total),
+      chapters: chapters,
+      steps: [1, 2, 3, 4, 5, 6, 7].map((n) => ({ n: n, on: s.started && s.scene >= 0 && s.scene === n })),
+      showSubs: s.subsOn && s.started,
+      subs: (() => {
+        const L = s.scene >= 0 ? this.subLines()[s.scene] : [];
+        let act = -1;
+        L.forEach((c, i) => { if (s.el >= c[0]) act = i; });
+        return L.map((c, i) => ({ text: c[1], on: i === act }));
+      })(),
+      subsOn: s.subsOn,
+      subsLabel: s.subsOn ? 'Hide captions' : 'Show captions',
+      subsColor: s.subsOn ? '#8FD16F' : '#A9B8CC',
+      toggleSubs: () => this.setState({ subsOn: !this.state.subsOn }),
+      musicOn: s.music,
+      musicOff: !s.music,
+      musicLabel: s.music ? 'Music on' : 'Music off',
+      toggleMusic: () => {
+        const on = !this.state.music;
+        this.setState({ music: on }, () => {
+          if (!on) this.musicStop(0.6);
+          else if (this.state.playing) this.musicStart();
+        });
+      },
+      togglePlay: () => {
+        if (!this.state.started || this.state.ended) this.go(0);
+        else {
+          const playing = !this.state.playing;
+          if (playing) this.musicResume(); else this.musicPause();
+          this.setState({ playing: playing });
+        }
+      },
+      replay: () => this.go(0),
+      back10: () => this.jump(-10000),
+      fwd10: () => this.jump(10000),
+      prev: () => this.go(Math.max(0, cur - 1)),
+      next: () => this.go(Math.min(d.length - 1, cur + 1))
+    };
+  }
+}
+
+Player.prototype.setState = function (obj, cb) { Object.assign(this.state, obj); this.render(); if (cb) cb(); };
+Player.prototype.render = function () {
+  const v = this.renderVals();
+  const $ = (id) => document.getElementById(id);
+  const s = this.state;
+  const vis = s.started ? s.scene : -2;
+  if (vis !== this._vis) {
+    this._vis = vis;
+    const tpl = $('scene-' + vis);
+    $('sceneHost').innerHTML = tpl ? tpl.innerHTML : '';
+  }
+  $('stage').classList.toggle('paused', !s.playing);
+  $('cover').hidden = !v.showCover;
+  const st = v.steps.find((x) => x.on);
+  const stn = st ? st.n : 0;
+  if (stn !== this._step) { this._step = stn; $('steps').innerHTML = stn ? STEP_HTML.split('{{st.n}}').join(String(stn)) : ''; }
+  const sb = v.showSubs ? v.subs.find((x) => x.on) : null;
+  const key = sb ? s.scene + '|' + sb.text : '';
+  if (key !== this._sub) {
+    this._sub = key;
+    $('subs').innerHTML = '';
+    if (sb) { const d = document.createElement('div'); d.innerHTML = SUB_OPEN + '</div>'; d.firstChild.textContent = sb.text; $('subs').appendChild(d.firstChild); }
+  }
+  $('prog').style.width = v.progressW;
+  $('timeLabel').textContent = v.timeLabel;
+  $('playLabel').textContent = v.playLabel;
+  $('playBtn').setAttribute('aria-label', v.playLabel);
+  $('icoPause').hidden = !v.isPlaying; $('icoPlay').hidden = v.isPlaying;
+  $('musicLabel').textContent = v.musicLabel; $('musicBtn').setAttribute('aria-label', v.musicLabel); $('musicBtn').setAttribute('aria-pressed', String(v.musicOn));
+  $('icoMusicOn').hidden = !v.musicOn; $('icoMusicOff').hidden = v.musicOn;
+  $('subsBtn').setAttribute('aria-label', v.subsLabel); $('subsBtn').setAttribute('aria-pressed', String(v.subsOn)); $('subsIcon').setAttribute('stroke', v.subsColor);
+  const ck = v.chapters.map((c) => c.cls).join(',');
+  if (ck !== this._chips) {
+    this._chips = ck;
+    const host = $('chapters'); host.innerHTML = '';
+    v.chapters.forEach((c, i) => {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'chip ' + c.cls; b.textContent = c.label;
+      b.addEventListener('click', () => this.go(i)); host.appendChild(b);
+    });
+  }
+};
+const P = new Player();
+const call = (k) => () => P.renderVals()[k]();
+document.getElementById('coverPlay').addEventListener('click', call('togglePlay'));
+document.getElementById('playBtn').addEventListener('click', call('togglePlay'));
+document.getElementById('replayBtn').addEventListener('click', call('replay'));
+document.getElementById('prevBtn').addEventListener('click', call('prev'));
+document.getElementById('back10Btn').addEventListener('click', call('back10'));
+document.getElementById('fwd10Btn').addEventListener('click', call('fwd10'));
+document.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') { e.preventDefault(); call('back10')(); } else if (e.key === 'ArrowRight') { e.preventDefault(); call('fwd10')(); } else if (e.key === ' ' && e.target === document.body) { e.preventDefault(); call('togglePlay')(); } });
+document.getElementById('nextBtn').addEventListener('click', call('next'));
+document.getElementById('musicBtn').addEventListener('click', call('toggleMusic'));
+document.getElementById('subsBtn').addEventListener('click', call('toggleSubs'));
+P.render();
+P.componentDidMount();
+
+</script>
+</body>
+</html>
